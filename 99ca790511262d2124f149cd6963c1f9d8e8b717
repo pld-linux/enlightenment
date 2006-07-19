@@ -1,0 +1,4 @@
+- updated to 0.16.999.013
+- new Source0 ("official" snapshots)
+- BR gettext-devel
+- fixed missing AC_C___ATTRIBUTE__ macro
