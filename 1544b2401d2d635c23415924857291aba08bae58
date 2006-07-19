@@ -1,0 +1,2 @@
+- fix lib64 in dynamic prefix detection
+- build 3 themes and 2 init, NFY, packages have to be split
