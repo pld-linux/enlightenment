@@ -1,0 +1,4 @@
+- up to 0.16.999.018
+- separated libs
+- separated cpu frequency changer (neads suid)
+- better %files
