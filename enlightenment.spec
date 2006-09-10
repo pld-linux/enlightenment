@@ -1,12 +1,12 @@
 Summary:	Enlightenment Window Manager
 Summary(pl):	Zarz±dca okien X - Enlightenment
 Name:		enlightenment
-Version:	0.16.999.031
+Version:	0.16.999.032
 Release:	1
 License:	BSD
 Group:		X11/Window Managers
 Source0:	http://enlightenment.freedesktop.org/files/%{name}-%{version}.tar.gz
-# Source0-md5:	2e468e84199b97d67605207a55041c6d
+# Source0-md5:	206dca9d967ea4898ca0b9139e51e31f
 Source1:	%{name}-xsession.desktop
 Source2:	enlightenmentDR17-app.tar.gz
 # Source2-md5:	9f08a7d1850bc81eb301d849561f609f
@@ -25,6 +25,11 @@ Requires:	fonts-TTF-bitstream-vera
 Requires:	vfmg >= 0.9.95
 Requires:	enlightenment-theme-default = %{version}
 Requires:	enlightenment-init-default
+Requires:	evas-engine-buffer
+Requires:	evas-engine-software_x11
+Requires:	evas-loader-eet
+Requires:	evas-loader-jpeg
+Requires:	evas-loader-png
 Obsoletes:	enlightenmentDR17 >= 0.16.999
 Obsoletes:	enlightenmentDR17-libs >= 0.16.999
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
