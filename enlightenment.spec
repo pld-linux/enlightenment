@@ -8,9 +8,6 @@ Group:		X11/Window Managers
 Source0:	http://enlightenment.freedesktop.org/files/%{name}-%{version}.tar.gz
 # Source0-md5:	bf9ce15f009b7a8d8875fddea2ea065f
 Source1:	%{name}-xsession.desktop
-Source2:	enlightenmentDR17-app.tar.gz
-# Source2-md5:	9f08a7d1850bc81eb301d849561f609f
-Source3:	enlightenmentDR17-wcnt.txt
 Patch0:		enlightenmentDR17-module_temp_mac.patch
 URL:		http://enlightenment.org/
 BuildRequires:	autoconf
@@ -79,7 +76,6 @@ Pliki nag³ówkowe dla Enlightenmenta.
 %prep
 %setup -q
 %patch0 -p1
-install %{SOURCE2} data/other/applications.tar.gz
 
 %build
 %{__libtoolize}
@@ -106,7 +102,6 @@ rm $RPM_BUILD_ROOT%{_datadir}/%{name}/data/themes/default.edj
 install -d $RPM_BUILD_ROOT%{_libdir}/enlightenment/modules_extra
 install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/config-apps
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
-install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/%{name}/wcnt.txt
 find $RPM_BUILD_ROOT%{_libdir}/enlightenment -name "*.a" -or -name "*.la" \
 	| xargs rm
 
