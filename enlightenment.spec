@@ -31,6 +31,7 @@ Obsoletes:	enlightenmentDR17 >= 0.16.999
 Obsoletes:	enlightenmentDR17-libs >= 0.16.999
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%{expand:%%define	_sysconfdir	%{_sysconfdir}/X11}
 %undefine	__cxx
 
 %description
