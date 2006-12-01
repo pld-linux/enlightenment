@@ -122,7 +122,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING* README
 %attr(755,root,root) %{_bindir}/enlightenment
-%attr(755,root,root) %{_bindir}/enlightenment_sys
+# SETUID ! allows rebooting, hibernating and shuting system down
+%attr(4754,root,sys) %{_bindir}/enlightenment_sys
 %attr(755,root,root) %{_bindir}/enlightenment_imc
 %attr(755,root,root) %{_bindir}/enlightenment_remote
 %attr(755,root,root) %{_bindir}/enlightenment_start
