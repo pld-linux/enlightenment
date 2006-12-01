@@ -21,7 +21,7 @@ BuildRequires:	sed >= 4.0
 Requires:	fonts-TTF-bitstream-vera
 Requires:	vfmg >= 0.9.95
 Requires:	enlightenment-theme-default = %{version}
-Requires:	enlightenment-init-default
+Requires:	enlightenment-init-default = %{version}
 Requires:	evas-engine-buffer
 Requires:	evas-engine-software_x11
 Requires:	evas-loader-eet
