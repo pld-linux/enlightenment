@@ -1,12 +1,12 @@
 Summary:	Enlightenment Window Manager
 Summary(pl):	Zarz±dca okien X - Enlightenment
 Name:		enlightenment
-Version:	0.16.999.032
+Version:	0.16.999.036
 Release:	1
 License:	BSD
 Group:		X11/Window Managers
 Source0:	http://enlightenment.freedesktop.org/files/%{name}-%{version}.tar.gz
-# Source0-md5:	206dca9d967ea4898ca0b9139e51e31f
+# Source0-md5:	bf9ce15f009b7a8d8875fddea2ea065f
 Source1:	%{name}-xsession.desktop
 Source2:	enlightenmentDR17-app.tar.gz
 # Source2-md5:	9f08a7d1850bc81eb301d849561f609f
@@ -100,7 +100,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm $RPM_BUILD_ROOT%{_datadir}/%{name}/data/init/init.edj
+rm $RPM_BUILD_ROOT%{_datadir}/%{name}/data/init/default.edj
 rm $RPM_BUILD_ROOT%{_datadir}/%{name}/data/themes/default.edj
 
 install -d $RPM_BUILD_ROOT%{_libdir}/enlightenment/modules_extra
@@ -127,8 +127,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING* README
 %attr(755,root,root) %{_bindir}/enlightenment
-%attr(755,root,root) %{_bindir}/enlightenment_eapp
-%attr(755,root,root) %{_bindir}/enlightenment_eapp_cache_gen
+%attr(755,root,root) %{_bindir}/enlightenment_sys
 %attr(755,root,root) %{_bindir}/enlightenment_imc
 %attr(755,root,root) %{_bindir}/enlightenment_remote
 %attr(755,root,root) %{_bindir}/enlightenment_start
@@ -138,8 +137,12 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/enlightenment/modules/*
 %dir %{_libdir}/enlightenment/modules/*/linux-gnu-*
 %attr(755,root,root) %{_libdir}/enlightenment/modules/*/linux-gnu-*/*.so
+%attr(755,root,root) %{_libdir}/enlightenment/preload/e_precache.so
 # violates FHS
-%{_libdir}/enlightenment/modules/*/module.eap
+%{_libdir}/enlightenment/modules/*/module.desktop
+%{_libdir}/enlightenment/modules/*/module.edj
+%dir %{_sysconfdir}/enlightenment
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/enlightenment/sysactions.conf
 %{_datadir}/%{name}
 %{_datadir}/xsessions/%{name}.desktop
 
