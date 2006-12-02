@@ -64,7 +64,6 @@ Zawiera binarkê SUID.
 Summary:	Development headers for Enlightenment
 Summary(pl):	Pliki nag³ówkowe dla Enlightenmenta
 Group:		Development/Libraries
-Requires:	%{name}-libs = %{version}-%{release}
 Requires:	edje-devel
 Obsoletes:	enlightenmentDR17-devel >= 0.16.999
 
