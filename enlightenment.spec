@@ -1,5 +1,5 @@
 Summary:	Enlightenment Window Manager
-Summary(pl):	Zarz±dca okien X - Enlightenment
+Summary(pl.UTF-8):   ZarzƒÖdca okien X - Enlightenment
 Name:		enlightenment
 Version:	0.16.999.036
 Release:	1
@@ -39,13 +39,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Enlightenment is a Windowmanager for X Window that is designed to be
 powerful, extensible, configurable and able to be really good looking.
 
-%description -l pl
-Enlightenment jest najpotÍøniejszym i najpiÍkniejszym zarz±dc± okien
-jaki kiedykolwiek zosta≥ stworzony dla Linuksa ;)
+%description -l pl.UTF-8
+Enlightenment jest najpotƒô≈ºniejszym i najpiƒôkniejszym zarzƒÖdcƒÖ okien
+jaki kiedykolwiek zosta≈Ç stworzony dla Linuksa ;)
 
 %package module-cpufreq-freqset
 Summary:	CPU speed management binary
-Summary(pl):	Program do zaz±dzania szybko∂ci± CPU
+Summary(pl.UTF-8):   Program do zazƒÖdzania szybko≈õciƒÖ CPU
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	enlightenmentDR17-module-cpufreq-freqset >= 0.16.999
@@ -55,15 +55,15 @@ freqset makes you able to change CPU frequency using cpufreq module.
 
 It contains SUID binary.
 
-%description module-cpufreq-freqset -l pl
-freqset pozwala zmieniaÊ czÍstotliwo∂Ê pracy procesora przy uøyciu
-modu≥u cpufreq.
+%description module-cpufreq-freqset -l pl.UTF-8
+freqset pozwala zmieniaƒá czƒôstotliwo≈õƒá pracy procesora przy u≈ºyciu
+modu≈Çu cpufreq.
 
-Zawiera binarkÍ SUID.
+Zawiera binarkƒô SUID.
 
 %package devel
 Summary:	Development headers for Enlightenment
-Summary(pl):	Pliki nag≥Ûwkowe dla Enlightenmenta
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe dla Enlightenmenta
 Group:		Development/Libraries
 Requires:	edje-devel
 Obsoletes:	enlightenmentDR17-devel >= 0.16.999
@@ -71,8 +71,8 @@ Obsoletes:	enlightenmentDR17-devel >= 0.16.999
 %description devel
 Development headers for Enlightenment.
 
-%description devel -l pl
-Pliki nag≥Ûwkowe dla Enlightenmenta.
+%description devel -l pl.UTF-8
+Pliki nag≈Ç√≥wkowe dla Enlightenmenta.
 
 %prep
 %setup -q
