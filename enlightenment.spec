@@ -1,5 +1,5 @@
 Summary:	Enlightenment Window Manager
-Summary(pl.UTF-8):   Zarządca okien X - Enlightenment
+Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
 Version:	0.16.999.036
 Release:	1
@@ -45,7 +45,7 @@ jaki kiedykolwiek został stworzony dla Linuksa ;)
 
 %package module-cpufreq-freqset
 Summary:	CPU speed management binary
-Summary(pl.UTF-8):   Program do zaządzania szybkością CPU
+Summary(pl.UTF-8):	Program do zaządzania szybkością CPU
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	enlightenmentDR17-module-cpufreq-freqset >= 0.16.999
@@ -63,7 +63,7 @@ Zawiera binarkę SUID.
 
 %package devel
 Summary:	Development headers for Enlightenment
-Summary(pl.UTF-8):   Pliki nagłówkowe dla Enlightenmenta
+Summary(pl.UTF-8):	Pliki nagłówkowe dla Enlightenmenta
 Group:		Development/Libraries
 Requires:	edje-devel
 Obsoletes:	enlightenmentDR17-devel >= 0.16.999
