@@ -1,33 +1,41 @@
 Summary:	Enlightenment Window Manager
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
-Version:	0.16.999.037
+Version:	0.16.999.038
 Release:	1
 License:	BSD
 Group:		X11/Window Managers
 Source0:	http://enlightenment.freedesktop.org/files/%{name}-%{version}.tar.gz
-# Source0-md5:	7ca0359905aecc81bca85208148d9264
+# Source0-md5:	d54d8f7094b398fbd547992b8ad80cae
 Source1:	%{name}-xsession.desktop
 Source2:	enlightenmentDR17-wcnt.txt
 Patch0:		enlightenmentDR17-module_temp_mac.patch
 URL:		http://enlightenment.org/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
-BuildRequires:	edje
-BuildRequires:	edje-devel
-BuildRequires:	gettext-devel
+# ecore-evas ecore-config ecore-dbus ecore-file
+BuildRequires:	ecore-devel >= 0.9.9.038
+BuildRequires:	edje >= 0.5.0.038
+BuildRequires:	edje-devel >= 0.5.0.038
+BuildRequires:	eet-devel >= 0.9.10.038
+BuildRequires:	efreet-devel
+BuildRequires:	embryo-devel >= 0.9.1.038
+BuildRequires:	evas-devel >= 0.9.9.038
+BuildRequires:	gettext-devel >= 0.12.1
 BuildRequires:	libtool
+BuildRequires:	pam-devel
 BuildRequires:	pkgconfig
 BuildRequires:	sed >= 4.0
+BuildRequires:	xorg-lib-libXext-devel
 Requires:	fonts-TTF-bitstream-vera
 Requires:	vfmg >= 0.9.95
 Requires:	enlightenment-theme-default = %{version}
 Requires:	enlightenment-init-default = %{version}
-Requires:	evas-engine-buffer
-Requires:	evas-engine-software_x11
-Requires:	evas-loader-eet
-Requires:	evas-loader-jpeg
-Requires:	evas-loader-png
+Requires:	evas-engine-buffer >= 0.9.9.038
+Requires:	evas-engine-software_x11 >= 0.9.9.038
+Requires:	evas-loader-eet >= 0.9.9.038
+Requires:	evas-loader-jpeg >= 0.9.9.038
+Requires:	evas-loader-png >= 0.9.9.038
 Obsoletes:	enlightenmentDR17 >= 0.16.999
 Obsoletes:	enlightenmentDR17-libs >= 0.16.999
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -65,7 +73,12 @@ Zawiera binarkę SUID.
 Summary:	Development headers for Enlightenment
 Summary(pl.UTF-8):	Pliki nagłówkowe dla Enlightenmenta
 Group:		Development/Libraries
-Requires:	edje-devel
+# by headers included in e.h
+# ecore-x ecore-evas ecore-con ecore-ipc ecore-job ecore-txt ecore-config ecore-file ecore-dbus
+Requires:	ecore-devel >= 0.9.9.038
+Requires:	edje-devel >= 0.5.0.038
+Requires:	eet-devel >= 0.9.10.038
+Requires:	efreet-devel
 Obsoletes:	enlightenmentDR17-devel >= 0.16.999
 
 %description devel
@@ -86,7 +99,7 @@ Pliki nagłówkowe dla Enlightenmenta.
 %{__automake}
 %configure \
 	--disable-static \
-	--disable-valgrind	\
+	--disable-valgrind \
 	--with-profile=SLOW_PC
 %{__make}
 
@@ -104,8 +117,7 @@ install -d $RPM_BUILD_ROOT%{_libdir}/enlightenment/modules_extra
 install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/config-apps
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/%{name}/wcnt.txt
-find $RPM_BUILD_ROOT%{_libdir}/enlightenment -name "*.a" -or -name "*.la" \
-	| xargs rm
+find $RPM_BUILD_ROOT%{_libdir}/enlightenment -name '*.la' | xargs rm
 
 cd $RPM_BUILD_ROOT%{_datadir}/%{name}/data/fonts
 VERA=$(ls Vera*.ttf)
@@ -122,23 +134,26 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING* README
+%doc AUTHORS COPYING COPYING-PLAIN README TODO
 %attr(755,root,root) %{_bindir}/enlightenment
-# SETUID ! allows rebooting, hibernating and shuting system down
-%attr(4754,root,sys) %{_bindir}/enlightenment_sys
+%attr(755,root,root) %{_bindir}/enlightenment_fm
 %attr(755,root,root) %{_bindir}/enlightenment_imc
 %attr(755,root,root) %{_bindir}/enlightenment_remote
 %attr(755,root,root) %{_bindir}/enlightenment_start
+# SETUID! allows rebooting, hibernating and shutting system down
+%attr(4754,root,sys) %{_bindir}/enlightenment_sys
 %attr(755,root,root) %{_bindir}/enlightenment_thumb
 %dir %{_libdir}/enlightenment
-%dir %{_libdir}/enlightenment/*
+%dir %{_libdir}/enlightenment/modules
 %dir %{_libdir}/enlightenment/modules/*
 %dir %{_libdir}/enlightenment/modules/*/linux-gnu-*
 %attr(755,root,root) %{_libdir}/enlightenment/modules/*/linux-gnu-*/*.so
-%attr(755,root,root) %{_libdir}/enlightenment/preload/e_precache.so
-# violates FHS
+# should be in %{_datadir} (FHS)
 %{_libdir}/enlightenment/modules/*/module.desktop
-%{_libdir}/enlightenment/modules/*/module.edj
+%{_libdir}/enlightenment/modules/*/e-module-*.edj
+%dir %{_libdir}/enlightenment/modules_extra
+%dir %{_libdir}/enlightenment/preload
+%attr(755,root,root) %{_libdir}/enlightenment/preload/e_precache.so
 %dir %{_sysconfdir}/enlightenment
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/enlightenment/sysactions.conf
 %{_datadir}/%{name}
