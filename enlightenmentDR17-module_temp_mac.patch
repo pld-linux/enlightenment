@@ -1,26 +1,12 @@
---- enlightenment-0.16.999.026/src/modules/temperature/e_mod_config.c.orig	2006-04-24 12:47:29.000000000 +0000
-+++ enlightenment-0.16.999.026/src/modules/temperature/e_mod_config.c	2006-04-24 12:49:59.000000000 +0000
-@@ -281,6 +281,10 @@
- 
- 	f = fopen("/sys/devices/temperatures/cpu_temperature", "rb");
- 	if (f) fclose(f);
-+	else {
-+		f = fopen("/sys/devices/temperatures/sensor1_temperature", "rb");
-+		if (f) fclose(f);
-+	}
- 	
- 	if (!f)
- 	  {
---- enlightenment-0.16.999.026/src/modules/temperature/e_mod_main.c.orig	2006-04-24 12:47:26.000000000 +0000
-+++ enlightenment-0.16.999.026/src/modules/temperature/e_mod_main.c	2006-04-24 12:58:18.000000000 +0000
-@@ -291,6 +291,10 @@
- 	if (therms) ecore_list_destroy(therms);
- 
- 	f = fopen("/sys/devices/temperatures/cpu_temperature", "rb");
-+	if (!f) {
-+		f = fopen("/sys/devices/temperatures/sensor1_temperature", "rb");
-+	}
-+	     
- 	if (f)
- 	  {
- 	     fgets(buf, sizeof(buf), f); buf[sizeof(buf) - 1] = 0;
+--- enlightenment-0.16.999.038/src/modules/temperature/e_mod_main.c.orig	2007-03-26 01:28:22.000000000 +0200
++++ enlightenment-0.16.999.038/src/modules/temperature/e_mod_main.c	2007-09-09 19:21:22.754853908 +0200
+@@ -286,6 +286,9 @@
+ 	      inst->sensor_path = evas_stringshare_add("/proc/omnibook/temperature");
+ 	      break;
+ 	   case SENSOR_TYPE_LINUX_MACMINI:
++	      if(!ecore_file_exists("/sys/devices/temperatures/cpu_temperature") && ecore_file_exists("/sys/devices/temperatures/sensor1_temperature"))
++		  inst->sensor_path = evas_stringshare_add("/sys/devices/temperatures/sensor1_temperature");
++	      else
+ 		  inst->sensor_path = evas_stringshare_add("/sys/devices/temperatures/cpu_temperature");
+ 	      break;
+ 	   case SENSOR_TYPE_LINUX_I2C:
