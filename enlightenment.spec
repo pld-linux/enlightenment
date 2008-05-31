@@ -1,3 +1,10 @@
+#
+%define		ecore_ver	0.9.9.038
+%define		edje_ver	0.5.0.038
+%define		eet_ver 	0.9.10.038
+%define		embryo_ver	0.9.1.038
+%define		evas_ver	0.9.9.038
+
 Summary:	Enlightenment Window Manager
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
@@ -14,13 +21,13 @@ URL:		http://enlightenment.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
 # ecore-evas ecore-config ecore-dbus ecore-file
-BuildRequires:	ecore-devel >= 0.9.9.038
-BuildRequires:	edje >= 0.5.0.038
-BuildRequires:	edje-devel >= 0.5.0.038
-BuildRequires:	eet-devel >= 0.9.10.038
+BuildRequires:	ecore-devel >= %{ecore_ver}
+BuildRequires:	edje >= %{edje_ver}
+BuildRequires:	edje-devel >= %{edje_ver}
+BuildRequires:	eet-devel >= %{eet_ver}
 BuildRequires:	efreet-devel
-BuildRequires:	embryo-devel >= 0.9.1.038
-BuildRequires:	evas-devel >= 0.9.9.038
+BuildRequires:	embryo-devel >= %{embryo_ver}
+BuildRequires:	evas-devel >= %{evas_ver}
 BuildRequires:	gettext-devel >= 0.12.1
 BuildRequires:	libtool
 BuildRequires:	pam-devel
@@ -31,11 +38,11 @@ Requires:	fonts-TTF-bitstream-vera
 Requires:	vfmg >= 0.9.95
 Requires:	enlightenment-theme-default = %{version}
 Requires:	enlightenment-init-default = %{version}
-Requires:	evas-engine-buffer >= 0.9.9.038
-Requires:	evas-engine-software_x11 >= 0.9.9.038
-Requires:	evas-loader-eet >= 0.9.9.038
-Requires:	evas-loader-jpeg >= 0.9.9.038
-Requires:	evas-loader-png >= 0.9.9.038
+Requires:	evas-engine-buffer >= %{evas_ver}
+Requires:	evas-engine-software_x11 >= %{evas_ver}
+Requires:	evas-loader-eet >= %{evas_ver}
+Requires:	evas-loader-jpeg >= %{evas_ver}
+Requires:	evas-loader-png >= %{evas_ver}
 Obsoletes:	enlightenmentDR17 >= 0.16.999
 Obsoletes:	enlightenmentDR17-libs >= 0.16.999
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -75,9 +82,9 @@ Summary(pl.UTF-8):	Pliki nagłówkowe dla Enlightenmenta
 Group:		Development/Libraries
 # by headers included in e.h
 # ecore-x ecore-evas ecore-con ecore-ipc ecore-job ecore-txt ecore-config ecore-file ecore-dbus
-Requires:	ecore-devel >= 0.9.9.038
-Requires:	edje-devel >= 0.5.0.038
-Requires:	eet-devel >= 0.9.10.038
+Requires:	ecore-devel >= %{ecore_ver}
+Requires:	edje-devel >= %{edje_ver}
+Requires:	eet-devel >= %{eet_ver}
 Requires:	efreet-devel
 Obsoletes:	enlightenmentDR17-devel >= 0.16.999
 
