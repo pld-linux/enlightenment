@@ -1,22 +1,37 @@
 #
-%define		ecore_ver	0.9.9.038
-%define		edje_ver	0.5.0.038
-%define		eet_ver 	0.9.10.038
-%define		embryo_ver	0.9.1.038
-%define		evas_ver	0.9.9.038
+# TODO:
+# - do sf with fr_CH (french translation with more english words)
+#
+# How to build e17 :
+# 1. build imlib2 edb embryo epeg, install embryo-devel imlib2-devel epeg-devel edb-devel
+# 2. build eet, install eet-devel
+# 3. build imlib2_loaders, install imlib2_loaders
+# 4. build evas, install evas-devel
+# 5. build ecore, install ecore-devel
+# 6. build e_dbus efreet, install e_dbus-devel efreet-devel
+# 7. build edje, install edje-devel
+# 8. build emotion epsilon etk , install emotion-devel epsilon-devel etk-devel
+# 9. build esmart ewl, install esmart-devel ewl-devel
+# Now You can build enlightenment and/or rage
+# enligtenment-theme-default and enligtenment-theme-default are in enligtenment-theme-default.spec
+
+%define		ecore_ver	0.9.9.043
+%define		edje_ver	0.9.9.043
+%define		eet_ver 	1.0.1
+%define		embryo_ver	0.9.9.043
+%define		evas_ver	0.9.9.043
 
 Summary:	Enlightenment Window Manager
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
-Version:	0.16.999.038
+Version:	0.16.999.043
 Release:	1
 License:	BSD
 Group:		X11/Window Managers
-Source0:	http://enlightenment.freedesktop.org/files/%{name}-%{version}.tar.gz
-# Source0-md5:	d54d8f7094b398fbd547992b8ad80cae
+Source0:	http://download.enlightenment.org/snapshots/2008-05-19/%{name}-%{version}.tar.bz2
+# Source0-md5:	6f502991ef3059772b290b85aadda108
 Source1:	%{name}-xsession.desktop
 Source2:	enlightenmentDR17-wcnt.txt
-Patch0:		enlightenmentDR17-module_temp_mac.patch
 URL:		http://enlightenment.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
@@ -96,7 +111,6 @@ Pliki nagłówkowe dla Enlightenmenta.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -141,10 +155,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING COPYING-PLAIN README TODO
+%doc AUTHORS COPYING COPYING-PLAIN ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/enlightenment
 %attr(755,root,root) %{_bindir}/enlightenment_fm
 %attr(755,root,root) %{_bindir}/enlightenment_imc
+%attr(755,root,root) %{_bindir}/enlightenment_init
 %attr(755,root,root) %{_bindir}/enlightenment_remote
 %attr(755,root,root) %{_bindir}/enlightenment_start
 # SETUID! allows rebooting, hibernating and shutting system down
@@ -155,6 +170,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/enlightenment/modules/*
 %dir %{_libdir}/enlightenment/modules/*/linux-gnu-*
 %attr(755,root,root) %{_libdir}/enlightenment/modules/*/linux-gnu-*/*.so
+%attr(755,root,root) %{_libdir}/enlightenment/modules/battery/linux-gnu-*/batget
+%attr(755,root,root) %{_libdir}/enlightenment/modules/temperature/linux-gnu-*/tempget
 # should be in %{_datadir} (FHS)
 %{_libdir}/enlightenment/modules/*/module.desktop
 %{_libdir}/enlightenment/modules/*/e-module-*.edj
@@ -176,3 +193,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/enlightenment-config
 %dir %{_includedir}/enlightenment
 %{_includedir}/enlightenment/*.h
+%{_pkgconfigdir}/enlightenment.pc
