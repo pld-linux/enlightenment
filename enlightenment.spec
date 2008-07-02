@@ -131,6 +131,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/fr_CH
 rm $RPM_BUILD_ROOT%{_datadir}/%{name}/data/init/default.edj
 rm $RPM_BUILD_ROOT%{_datadir}/%{name}/data/themes/default.edj
 
