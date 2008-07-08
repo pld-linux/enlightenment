@@ -1,7 +1,4 @@
 #
-# TODO:
-# - do sf with fr_CH (french translation with more english words)
-#
 # How to build e17 :
 # 1. build imlib2 edb embryo epeg, install embryo-devel imlib2-devel epeg-devel edb-devel
 # 2. build eet, install eet-devel
@@ -137,7 +134,6 @@ install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/fr_CH
 rm $RPM_BUILD_ROOT%{_datadir}/%{name}/data/init/default.edj
 rm $RPM_BUILD_ROOT%{_datadir}/%{name}/data/themes/default.edj
 
