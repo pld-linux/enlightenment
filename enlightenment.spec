@@ -34,12 +34,17 @@ Source1:	%{name}-xsession.desktop
 Source2:	enlightenmentDR17-wcnt.txt
 URL:		http://enlightenment.org/
 BuildRequires:	autoconf >= 2.59-9
-BuildRequires:	automake
-# ecore-evas ecore-config ecore-dbus ecore-file
+BuildRequires:	automake >= 1.6
+# edbus, ehal
+BuildRequires:	e_dbus-devel
+# ecore ecore-file ecore-ipc ecore-con ecore-job ecore-imf
 BuildRequires:	ecore-devel >= %{ecore_ver}
+# ecore-evas ecore-imf-evas
+BuildRequires:	ecore-evas-devel >= %{ecore_ver}
 BuildRequires:	edje >= %{edje_ver}
 BuildRequires:	edje-devel >= %{edje_ver}
 BuildRequires:	eet-devel >= %{eet_ver}
+# efreet efreet-mime
 BuildRequires:	efreet-devel
 BuildRequires:	embryo-devel >= %{embryo_ver}
 BuildRequires:	evas-devel >= %{evas_ver}
@@ -96,8 +101,9 @@ Summary:	Development headers for Enlightenment
 Summary(pl.UTF-8):	Pliki nagłówkowe dla Enlightenmenta
 Group:		Development/Libraries
 # by headers included in e.h
-# ecore-x ecore-evas ecore-con ecore-ipc ecore-job ecore-txt ecore-config ecore-file ecore-dbus
+# ecore-x ecore-evas ecore-con ecore-ipc ecore-job ecore-txt ecore-config ecore-file
 Requires:	ecore-devel >= %{ecore_ver}
+Requires:	ecore-evas-devel >= %{ecore_ver}
 Requires:	edje-devel >= %{edje_ver}
 Requires:	eet-devel >= %{eet_ver}
 Requires:	efreet-devel
