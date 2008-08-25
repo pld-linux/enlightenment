@@ -12,21 +12,23 @@
 # Now You can build enlightenment and/or rage
 # enligtenment-theme-default and enligtenment-theme-default are in enligtenment-theme-default.spec
 
-%define		ecore_ver	0.9.9.043
-%define		edje_ver	0.9.9.043
-%define		eet_ver 	1.0.1
-%define		embryo_ver	0.9.9.043
-%define		evas_ver	0.9.9.043
+%define		_snap	20080813
+
+%define		ecore_ver	0.9.9.044
+%define		edje_ver	0.9.9.044
+%define		eet_ver 	1.0.2
+%define		embryo_ver	0.9.9.044
+%define		evas_ver	0.9.9.044
 
 Summary:	Enlightenment Window Manager
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
-Version:	0.16.999.043
-Release:	1
+Version:	0.16.999.044
+Release:	0.%{_snap}.1
 License:	BSD
 Group:		X11/Window Managers
-Source0:	http://download.enlightenment.org/snapshots/2008-05-19/%{name}-%{version}.tar.bz2
-# Source0-md5:	6f502991ef3059772b290b85aadda108
+Source0:	%{name}-%{version}-%{_snap}.tar.bz2
+# Source0-md5:	43d72d394b034cea41bc85c87675ad24
 Source1:	%{name}-xsession.desktop
 Source2:	enlightenmentDR17-wcnt.txt
 URL:		http://enlightenment.org/
@@ -45,6 +47,7 @@ BuildRequires:	eet-devel >= %{eet_ver}
 BuildRequires:	efreet-devel
 BuildRequires:	embryo-devel >= %{embryo_ver}
 BuildRequires:	evas-devel >= %{evas_ver}
+BuildRequires:	gettext-autopoint
 BuildRequires:	gettext-devel >= 0.12.1
 BuildRequires:	libtool
 BuildRequires:	pam-devel
@@ -113,9 +116,10 @@ Development headers for Enlightenment.
 Pliki nagłówkowe dla Enlightenmenta.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}-%{_snap}
 
 %build
+%{__autopoint}
 %{__libtoolize}
 %{__aclocal} -I m4
 %{__autoconf}
@@ -161,6 +165,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS COPYING COPYING-PLAIN ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/enlightenment
 %attr(755,root,root) %{_bindir}/enlightenment_fm
+%attr(755,root,root) %{_bindir}/enlightenment_fm_op
 %attr(755,root,root) %{_bindir}/enlightenment_imc
 %attr(755,root,root) %{_bindir}/enlightenment_init
 %attr(755,root,root) %{_bindir}/enlightenment_remote
