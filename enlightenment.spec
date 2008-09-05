@@ -54,6 +54,7 @@ BuildRequires:	pam-devel
 BuildRequires:	pkgconfig
 BuildRequires:	sed >= 4.0
 BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	audit-libs-devel
 Requires:	fonts-TTF-bitstream-vera
 Requires:	vfmg >= 0.9.95
 Requires:	enlightenment-theme-default = %{version}
