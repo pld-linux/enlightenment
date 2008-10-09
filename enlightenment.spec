@@ -12,23 +12,22 @@
 # Now You can build enlightenment and/or rage
 # enligtenment-theme-default and enligtenment-theme-default are in enligtenment-theme-default.spec
 
-%define		_snap	20080813
 
-%define		ecore_ver	0.9.9.044
-%define		edje_ver	0.9.9.044
-%define		eet_ver 	1.0.2
-%define		embryo_ver	0.9.9.044
-%define		evas_ver	0.9.9.044
+%define		ecore_ver	0.9.9.050
+%define		edje_ver	0.9.9.050
+%define		eet_ver 	1.1.0
+%define		embryo_ver	0.9.9.050
+%define		evas_ver	0.9.9.050
 
 Summary:	Enlightenment Window Manager
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
-Version:	0.16.999.044
-Release:	0.%{_snap}.1
+Version:	0.16.999.050
+Release:	0.1
 License:	BSD
 Group:		X11/Window Managers
-Source0:	%{name}-%{version}-%{_snap}.tar.bz2
-# Source0-md5:	43d72d394b034cea41bc85c87675ad24
+Source0:	http://download.enlightenment.org/snapshots/2008-09-25/%{name}-%{version}.tar.bz2
+# Source0-md5:	d9091195d9aae958cbd56b3289034973
 Source1:	%{name}-xsession.desktop
 Source2:	enlightenmentDR17-wcnt.txt
 URL:		http://enlightenment.org/
@@ -117,7 +116,7 @@ Development headers for Enlightenment.
 Pliki nagłówkowe dla Enlightenmenta.
 
 %prep
-%setup -q -n %{name}-%{version}-%{_snap}
+%setup -q -n %{name}-%{version}
 
 %build
 %{__autopoint}
