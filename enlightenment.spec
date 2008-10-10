@@ -116,7 +116,7 @@ Development headers for Enlightenment.
 Pliki nagłówkowe dla Enlightenmenta.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 
 %build
 %{__autopoint}
