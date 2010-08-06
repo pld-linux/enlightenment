@@ -18,7 +18,6 @@
 %define		eet_ver 	1.3.2
 %define		embryo_ver	0.9.9.49898
 %define		evas_ver	0.9.9.49898
-%define		snapdate	2010-06-27
 
 Summary:	Enlightenment Window Manager
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
@@ -27,7 +26,7 @@ Version:	0.16.999.49898
 Release:	0.1
 License:	BSD
 Group:		X11/Window Managers
-Source0:	http://download.enlightenment.org/snapshots/%{snapdate}/%{name}-%{version}.tar.bz2
+Source0:	http://download.enlightenment.org/snapshots/LATEST/%{name}-%{version}.tar.bz2
 # Source0-md5:	96864a61c01305c33719f98466db18d0
 Source1:	%{name}-xsession.desktop
 Source2:	enlightenmentDR17-wcnt.txt
