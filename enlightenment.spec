@@ -22,12 +22,12 @@
 Summary:	Enlightenment Window Manager
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
-Version:	0.16.999.49898
+Version:	0.16.999.55225
 Release:	0.1
 License:	BSD
 Group:		X11/Window Managers
 Source0:	http://download.enlightenment.org/snapshots/LATEST/%{name}-%{version}.tar.bz2
-# Source0-md5:	96864a61c01305c33719f98466db18d0
+# Source0-md5:	296e321c66e5819b21179307342e1d29
 Source1:	%{name}-xsession.desktop
 Source2:	enlightenmentDR17-wcnt.txt
 URL:		http://enlightenment.org/
@@ -39,6 +39,7 @@ BuildRequires:	e_dbus-devel
 BuildRequires:	ecore-devel >= %{ecore_ver}
 # ecore-evas ecore-imf-evas
 BuildRequires:	ecore-evas-devel >= %{ecore_ver}
+BuildRequires:	ecore-ipc-devel >= %{ecore_ver}
 BuildRequires:	edje >= %{edje_ver}
 BuildRequires:	edje-devel >= %{edje_ver}
 BuildRequires:	eet-devel >= %{eet_ver}
