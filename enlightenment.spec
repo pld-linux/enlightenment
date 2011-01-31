@@ -58,7 +58,6 @@ BuildRequires:	audit-libs-devel
 Requires:	fonts-TTF-bitstream-vera
 Requires:	vfmg >= 0.9.95
 Requires:	enlightenment-theme-default = %{version}
-Requires:	enlightenment-init-default = %{version}
 Requires:	evas-engine-buffer >= %{evas_ver}
 Requires:	evas-engine-software_x11 >= %{evas_ver}
 Requires:	evas-loader-eet >= %{evas_ver}
@@ -139,8 +138,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_datadir}/%{name}/data/init/default.edj
-rm -f $RPM_BUILD_ROOT%{_datadir}/%{name}/data/themes/default.edj
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/%{name}/data/themes/default.edj
 
 install -d $RPM_BUILD_ROOT%{_libdir}/enlightenment/modules_extra
 install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/config-apps
@@ -164,6 +162,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
+%dir %{_sysconfdir}/enlightenment
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/enlightenment/sysactions.conf
 %attr(755,root,root) %{_bindir}/enlightenment
 #%attr(755,root,root) %{_bindir}/enlightenment_init
