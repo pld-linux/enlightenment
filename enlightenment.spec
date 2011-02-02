@@ -1,9 +1,8 @@
 
-%define		ecore_ver	0.9.9.49898
-%define		edje_ver	0.9.9.49898
-%define		eet_ver 	1.3.2
-%define		embryo_ver	0.9.9.49898
-%define		evas_ver	0.9.9.49898
+%define		ecore_ver	1.0.0
+%define		edje_ver	1.0.0
+%define		eet_ver 	1.4.0
+%define		evas_ver	1.0.0
 
 Summary:	Enlightenment Window Manager
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
@@ -32,7 +31,6 @@ BuildRequires:	eet-devel >= %{eet_ver}
 # efreet efreet-mime
 BuildRequires:	audit-libs-devel
 BuildRequires:	efreet-devel
-BuildRequires:	embryo-devel >= %{embryo_ver}
 BuildRequires:	evas-devel >= %{evas_ver}
 BuildRequires:	gettext-autopoint
 BuildRequires:	gettext-devel >= 0.12.1
