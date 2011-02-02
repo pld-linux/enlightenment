@@ -1,17 +1,3 @@
-#
-# How to build e17 :
-# 1. build imlib2 edb embryo epeg, install embryo-devel imlib2-devel epeg-devel edb-devel
-# 2. build eet, install eet-devel
-# 3. build imlib2_loaders, install imlib2_loaders
-# 4. build evas, install evas-devel
-# 5. build ecore, install ecore-devel
-# 6. build e_dbus efreet, install e_dbus-devel efreet-devel
-# 7. build edje, install edje-devel
-# 8. build emotion epsilon etk , install emotion-devel epsilon-devel etk-devel
-# 9. build esmart ewl, install esmart-devel ewl-devel
-# Now You can build enlightenment and/or rage
-# enligtenment-theme-default and enligtenment-theme-default are in enligtenment-theme-default.spec
-
 
 %define		ecore_ver	0.9.9.49898
 %define		edje_ver	0.9.9.49898
@@ -44,6 +30,7 @@ BuildRequires:	edje >= %{edje_ver}
 BuildRequires:	edje-devel >= %{edje_ver}
 BuildRequires:	eet-devel >= %{eet_ver}
 # efreet efreet-mime
+BuildRequires:	audit-libs-devel
 BuildRequires:	efreet-devel
 BuildRequires:	embryo-devel >= %{embryo_ver}
 BuildRequires:	evas-devel >= %{evas_ver}
@@ -54,15 +41,14 @@ BuildRequires:	pam-devel
 BuildRequires:	pkgconfig
 BuildRequires:	sed >= 4.0
 BuildRequires:	xorg-lib-libXext-devel
-BuildRequires:	audit-libs-devel
-Requires:	fonts-TTF-bitstream-vera
-Requires:	vfmg >= 0.9.95
 Requires:	enlightenment-theme-default = %{version}
 Requires:	evas-engine-buffer >= %{evas_ver}
 Requires:	evas-engine-software_x11 >= %{evas_ver}
 Requires:	evas-loader-eet >= %{evas_ver}
 Requires:	evas-loader-jpeg >= %{evas_ver}
 Requires:	evas-loader-png >= %{evas_ver}
+Requires:	fonts-TTF-bitstream-vera
+Requires:	vfmg >= 0.9.95
 Obsoletes:	enlightenmentDR17 >= 0.16.999
 Obsoletes:	enlightenmentDR17-libs >= 0.16.999
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
