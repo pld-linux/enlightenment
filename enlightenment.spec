@@ -648,7 +648,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/enlightenment/preload/e_precache.so
 #
 %dir %{_libdir}/enlightenment/utils
-%attr(755,root,root) %{_libdir}/enlightenment/utils/*
+%attr(755,root,root) %{_libdir}/enlightenment/utils/enlightenment_fm
+%attr(755,root,root) %{_libdir}/enlightenment/utils/enlightenment_fm_op
+%attr(755,root,root) %{_libdir}/enlightenment/utils/enlightenment_init
+# SETUID ! allows rebooting, hibernating and shuting system down
+%attr(4755,root,root) %{_libdir}/enlightenment/utils/enlightenment_sys
+%attr(755,root,root) %{_libdir}/enlightenment/utils/enlightenment_thumb
 %{_datadir}/enlightenment
 #
 %{_datadir}/xsessions/enlightenment.desktop
