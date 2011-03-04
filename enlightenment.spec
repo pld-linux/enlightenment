@@ -104,6 +104,8 @@ Group:		Development/Libraries
 # ecore-x ecore-evas ecore-con ecore-ipc ecore-job ecore-txt ecore-config ecore-file
 Requires:	ecore-devel >= %{ecore_ver}
 Requires:	ecore-evas-devel >= %{ecore_ver}
+Requires:	ecore-ipc-devel >= %{ecore_ver}
+Requires:	e_dbus-devel
 Requires:	edje-devel >= %{edje_ver}
 Requires:	eet-devel >= %{eet_ver}
 Requires:	efreet-devel
