@@ -6,6 +6,7 @@
 %define		evas_ver	1.0.0
 
 Summary:	Enlightenment Window Manager
+Summary(hu.UTF-8):	Enlightenment ablakkezelő
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
 Version:	0.16.999.55225
@@ -41,6 +42,7 @@ BuildRequires:	pam-devel
 BuildRequires:	pkgconfig
 BuildRequires:	sed >= 4.0
 BuildRequires:	xorg-lib-libXext-devel
+Requires:	edje
 Requires:	enlightenment-theme-default = %{version}
 Requires:	evas-engine-buffer >= %{evas_ver}
 Requires:	evas-engine-software_x11 >= %{evas_ver}
@@ -60,12 +62,17 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Enlightenment is a Windowmanager for X Window that is designed to be
 powerful, extensible, configurable and able to be really good looking.
 
+%description  -l hu.UTF-8
+Enlightenment egy ablakkezelő, amely arra készült, hogy hatékony,
+bővíthető, beállítható legyen, és tényleg jól nézzen ki.
+
 %description -l pl.UTF-8
 Enlightenment jest najpotężniejszym i najpiękniejszym zarządcą okien
 jaki kiedykolwiek został stworzony dla Linuksa ;)
 
 %package module-cpufreq-freqset
 Summary:	CPU speed management binary
+Summary(hu.UTF-8):	CPU sebesség menedzselő program
 Summary(pl.UTF-8):	Program do zaządzania szybkością CPU
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
@@ -76,6 +83,12 @@ freqset makes you able to change CPU frequency using cpufreq module.
 
 It contains SUID binary.
 
+%description module-cpufreq-freqset -l hu.UTF-8
+freqset-tel lehetőséged van a CPU frekvenciáját változtatni a cpufreq
+modul használatával.
+
+SUID binárist tartalmaz.
+
 %description module-cpufreq-freqset -l pl.UTF-8
 freqset pozwala zmieniać częstotliwość pracy procesora przy użyciu
 modułu cpufreq.
@@ -84,6 +97,7 @@ Zawiera binarkę SUID.
 
 %package devel
 Summary:	Development headers for Enlightenment
+Summary(hu.UTF-8):	Fejlesztői fájlok Enlightenment-hez
 Summary(pl.UTF-8):	Pliki nagłówkowe dla Enlightenmenta
 Group:		Development/Libraries
 # by headers included in e.h
@@ -97,6 +111,9 @@ Obsoletes:	enlightenmentDR17-devel >= 0.16.999
 
 %description devel
 Development headers for Enlightenment.
+
+%description devel -l hu.UTF-8
+Fejlesztői fájlok Enlightenment-hez.
 
 %description devel -l pl.UTF-8
 Pliki nagłówkowe dla Enlightenmenta.
