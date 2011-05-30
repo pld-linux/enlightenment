@@ -10,7 +10,7 @@ Summary(hu.UTF-8):	Enlightenment ablakkezelő
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
 Version:	0.16.999.55225
-Release:	0.1
+Release:	0.2
 License:	BSD
 Group:		X11/Window Managers
 Source0:	http://download.enlightenment.org/snapshots/LATEST/%{name}-%{version}.tar.bz2
@@ -42,7 +42,9 @@ BuildRequires:	pam-devel
 BuildRequires:	pkgconfig
 BuildRequires:	sed >= 4.0
 BuildRequires:	xorg-lib-libXext-devel
+Requires:	e_dbus
 Requires:	edje
+Requires:	efreet
 Requires:	enlightenment-theme-default = %{version}
 Requires:	evas-engine-buffer >= %{evas_ver}
 Requires:	evas-engine-software_x11 >= %{evas_ver}
