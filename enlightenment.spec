@@ -7,13 +7,14 @@
 %define		eina_ver	1.0.999
 %define		embryo_ver	1.0.0
 %define		evas_ver	1.0.999
+%define		eeze_ver	1.0.0
 
 Summary:	Enlightenment Window Manager
 Summary(hu.UTF-8):	Enlightenment ablakkezelő
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
 Version:	0.16.999.65643
-Release:	2
+Release:	3
 License:	BSD
 Group:		X11/Window Managers
 Source0:	http://download.enlightenment.org/snapshots/LATEST/%{name}-%{version}.tar.bz2
@@ -26,6 +27,7 @@ BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1.6
 # edbus, ehal
 BuildRequires:	e_dbus-devel >= %{e_dbus_ver}
+BuildRequires:	eeze-devel >= %{eeze_ver}
 # ecore ecore-file ecore-ipc ecore-con ecore-job ecore-imf
 BuildRequires:	ecore-devel >= %{ecore_ver}
 # ecore-evas ecore-imf-evas
@@ -58,6 +60,7 @@ Requires:	evas-loader-jpeg >= %{evas_ver}
 Requires:	evas-loader-png >= %{evas_ver}
 Requires:	fonts-TTF-bitstream-vera
 Requires:	vfmg >= 0.9.95
+Suggests:	enlightenment-utils-eeze
 Obsoletes:	enlightenmentDR17 >= 0.16.999
 Obsoletes:	enlightenmentDR17-libs >= 0.16.999
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
