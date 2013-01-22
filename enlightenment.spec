@@ -1,55 +1,81 @@
-
-%define		ecore_ver	1.0.999
-%define		e_dbus_ver	1.0.999
-%define		edje_ver	1.0.999
-%define		eet_ver 	1.4.0
-%define		efreet_ver	1.0.999
-%define		eina_ver	1.0.999
-%define		embryo_ver	1.0.0
-%define		evas_ver	1.0.999
-%define		eeze_ver	1.0.0
+# TODO: verify install time dependencies
+#
+# Conditonal build:
+%bcond_with	wayland		# Wayland clients in composite module
+#
+%define		efl_ver		1.7.4
+%define		ecore_ver	%{efl_ver}
+%define		edbus_ver	%{efl_ver}
+%define		edje_ver	%{efl_ver}
+%define		eet_ver 	%{efl_ver}
+%define		efreet_ver	%{efl_ver}
+%define		eina_ver	%{efl_ver}
+%define		eio_ver		%{efl_ver}
+%define		emotion_ver	%{efl_ver}
+%define		evas_ver	%{efl_ver}
+%define		eeze_ver	%{efl_ver}
+%define		elementary_ver	1.6.9.0
 
 Summary:	Enlightenment Window Manager
 Summary(hu.UTF-8):	Enlightenment ablakkezelő
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
-Version:	0.16.999.65643
-Release:	4
+Version:	0.17.0
+Release:	1
 License:	BSD
 Group:		X11/Window Managers
-Source0:	http://download.enlightenment.org/snapshots/LATEST/%{name}-%{version}.tar.bz2
-# Source0-md5:	9bdb2e6f88c3456b50fe509f05de3b4f
+Source0:	http://download.enlightenment.org/releases/%{name}-%{version}.tar.bz2
+# Source0-md5:	b8f6a804964f1b5f4e7652a59d9fbfd1
 Source1:	%{name}-xsession.desktop
 Source2:	enlightenmentDR17-wcnt.txt
-Patch0:		rev66577.patch
 URL:		http://enlightenment.org/
+BuildRequires:	alsa-lib-devel >= 1.0.8
+BuildRequires:	audit-libs-devel
 BuildRequires:	autoconf >= 2.59-9
-BuildRequires:	automake >= 1.6
+BuildRequires:	automake >= 1:1.11
+BuildRequires:	dbus-devel
 # edbus, ehal
-BuildRequires:	e_dbus-devel >= %{e_dbus_ver}
+BuildRequires:	e_dbus-devel >= %{edbus_ver}
 BuildRequires:	eeze-devel >= %{eeze_ver}
-# ecore ecore-file ecore-ipc ecore-con ecore-job ecore-imf
+BuildRequires:	ecore-con-devel >= %{ecore_ver}
 BuildRequires:	ecore-devel >= %{ecore_ver}
-# ecore-evas ecore-imf-evas
 BuildRequires:	ecore-evas-devel >= %{ecore_ver}
+BuildRequires:	ecore-file-devel >= %{ecore_ver}
+BuildRequires:	ecore-imf-devel >= %{ecore_ver}
+BuildRequires:	ecore-imf-evas-devel >= %{ecore_ver}
+BuildRequires:	ecore-input-devel >= %{ecore_ver}
+BuildRequires:	ecore-input-evas-devel >= %{ecore_ver}
 BuildRequires:	ecore-ipc-devel >= %{ecore_ver}
+BuildRequires:	ecore-x-devel >= %{ecore_ver}
 BuildRequires:	edje >= %{edje_ver}
 BuildRequires:	edje-devel >= %{edje_ver}
 BuildRequires:	eet-devel >= %{eet_ver}
-# efreet efreet-mime
-BuildRequires:	audit-libs-devel
 BuildRequires:	efreet-devel >= %{efreet_ver}
 BuildRequires:	eina-devel >= %{eina_ver}
-BuildRequires:	embryo-devel >= %{embryo_ver}
+BuildRequires:	eio-devel >= %{eio_ver}
+BuildRequires:	elementary-devel >= %{elementary_ver}
+BuildRequires:	emotion-devel >= %{emotion_ver}
+#BuildRequires:	ephysics-devel
 BuildRequires:	evas-devel >= %{evas_ver}
-BuildRequires:	gettext-autopoint
-BuildRequires:	gettext-devel >= 0.12.1
+BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	libtool
+BuildRequires:	libxcb-devel
 BuildRequires:	pam-devel
 BuildRequires:	pkgconfig
 BuildRequires:	sed >= 4.0
+BuildRequires:	xcb-util-keysyms-devel
 BuildRequires:	xorg-lib-libXext-devel
-Requires:	e_dbus >= %{e_dbus_ver}
+%if %{with wayland}
+BuildRequires:	Mesa-libEGL-devel >= 7.10
+# glesv2
+BuildRequires:	Mesa-libGLES-devel
+BuildRequires:	Mesa-libGL-devel
+BuildRequires:	pixman-devel
+# wayland-server
+BuildRequires:	wayland-devel
+BuildRequires:	xcb-util-image-devel
+%endif
+Requires:	e_dbus >= %{edbus_ver}
 Requires:	edje >= %{edje_ver}
 Requires:	efreet >= %{efreet_ver}
 Requires:	enlightenment-theme-default = %{version}
@@ -111,14 +137,21 @@ Summary(hu.UTF-8):	Fejlesztői fájlok Enlightenment-hez
 Summary(pl.UTF-8):	Pliki nagłówkowe dla Enlightenmenta
 Group:		Development/Libraries
 # by headers included in e.h
-# ecore-x ecore-evas ecore-con ecore-ipc ecore-job ecore-txt ecore-config ecore-file
+# ecore-con ecore-ipc ecore-job ecore-txt ecore-config
 Requires:	ecore-devel >= %{ecore_ver}
 Requires:	ecore-evas-devel >= %{ecore_ver}
+Requires:	ecore-file-devel >= %{ecore_ver}
+Requires:	ecore-input-devel >= %{ecore_ver}
+Requires:	ecore-input-evas-devel >= %{ecore_ver}
 Requires:	ecore-ipc-devel >= %{ecore_ver}
-Requires:	e_dbus-devel
+Requires:	ecore-x-devel >= %{ecore_ver}
+Requires:	e_dbus-devel >= %{edbus_ver}
 Requires:	edje-devel >= %{edje_ver}
 Requires:	eet-devel >= %{eet_ver}
-Requires:	efreet-devel
+Requires:	efreet-devel >= %{efreet_ver}
+Requires:	eio-devel >= %{eio_ver}
+Requires:	elementary-devel >= %{elementary_ver}
+Requires:	emotion-devel >= %{emotion_ver}
 Obsoletes:	enlightenmentDR17-devel >= 0.16.999
 
 %description devel
@@ -132,19 +165,20 @@ Pliki nagłówkowe dla Enlightenmenta.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
-%{__autopoint}
+%{__gettextize}
 %{__libtoolize}
 %{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
 %configure \
+	--disable-silent-rules \
 	--disable-static \
+	%{?with_wayland:--enable-wayland-clients} \
 	--with-profile=SLOW_PC
-%{__make} V=1
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -159,7 +193,7 @@ install -d $RPM_BUILD_ROOT%{_libdir}/enlightenment/modules_extra
 install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/config-apps
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/%{name}/wcnt.txt
-find $RPM_BUILD_ROOT%{_libdir}/enlightenment -name '*.la' | xargs rm
+find $RPM_BUILD_ROOT%{_libdir}/enlightenment -name '*.la' | xargs %{__rm}
 
 #cd $RPM_BUILD_ROOT%{_datadir}/%{name}/data/fonts
 #VERA=$(ls Vera*.ttf)
@@ -181,8 +215,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_sysconfdir}/enlightenment
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/enlightenment/sysactions.conf
 %attr(755,root,root) %{_bindir}/enlightenment
-#%attr(755,root,root) %{_bindir}/enlightenment_init
+%attr(755,root,root) %{_bindir}/enlightenment_filemanager
 %attr(755,root,root) %{_bindir}/enlightenment_imc
+%attr(755,root,root) %{_bindir}/enlightenment_open
 %attr(755,root,root) %{_bindir}/enlightenment_remote
 %attr(755,root,root) %{_bindir}/enlightenment_start
 %dir %{_libdir}/enlightenment
@@ -201,12 +236,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/enlightenment/modules/battery/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/battery/module.desktop
 #
-%dir %{_libdir}/enlightenment/modules/bluez
-%{_libdir}/enlightenment/modules/bluez/e-module-bluez.edj
-%dir %{_libdir}/enlightenment/modules/bluez/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/bluez/linux-gnu-*/module.so
-%{_libdir}/enlightenment/modules/bluez/module.desktop
-#
 %dir %{_libdir}/enlightenment/modules/clock
 %{_libdir}/enlightenment/modules/clock/e-module-clock.edj
 %dir %{_libdir}/enlightenment/modules/clock/linux-gnu-*
@@ -218,7 +247,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/enlightenment/modules/comp/linux-gnu-*
 %attr(755,root,root) %{_libdir}/enlightenment/modules/comp/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/comp/module.desktop
-%{_libdir}/enlightenment/modules/comp/shadow.edj
 #
 %dir %{_libdir}/enlightenment/modules/conf
 %{_libdir}/enlightenment/modules/conf/e-module-conf.edj
@@ -256,7 +284,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/enlightenment/modules/conf_interaction/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_intl
-%{_libdir}/enlightenment/modules/conf_intl/e-module-conf_intl.edj
 %dir %{_libdir}/enlightenment/modules/conf_intl/linux-gnu-*
 %attr(755,root,root) %{_libdir}/enlightenment/modules/conf_intl/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/conf_intl/module.desktop
@@ -300,14 +327,13 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/enlightenment/modules/conf_theme/linux-gnu-*
 %attr(755,root,root) %{_libdir}/enlightenment/modules/conf_theme/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/conf_theme/module.desktop
-#
-%dir %{_libdir}/enlightenment/modules/conf_wallpaper2
-%dir %{_libdir}/enlightenment/modules/conf_wallpaper2/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_wallpaper2/linux-gnu-*/module.so
-%{_libdir}/enlightenment/modules/conf_wallpaper2/module.desktop
+# disabled in configure
+#%dir %{_libdir}/enlightenment/modules/conf_wallpaper2
+#%dir %{_libdir}/enlightenment/modules/conf_wallpaper2/linux-gnu-*
+#%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_wallpaper2/linux-gnu-*/module.so
+#%{_libdir}/enlightenment/modules/conf_wallpaper2/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_window_manipulation
-%{_libdir}/enlightenment/modules/conf_window_manipulation/e-module-conf_winmanip.edj
 %dir %{_libdir}/enlightenment/modules/conf_window_manipulation/linux-gnu-*
 %attr(755,root,root) %{_libdir}/enlightenment/modules/conf_window_manipulation/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/conf_window_manipulation/module.desktop
@@ -379,17 +405,17 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/enlightenment/modules/illume-bluetooth/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/illume-bluetooth/module.desktop
 #
-%dir %{_libdir}/enlightenment/modules/illume-home-toggle
-%{_libdir}/enlightenment/modules/illume-home-toggle/e-module-illume-home-toggle.edj
-%dir %{_libdir}/enlightenment/modules/illume-home-toggle/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-home-toggle/linux-gnu-*/module.so
-%{_libdir}/enlightenment/modules/illume-home-toggle/module.desktop
-#
 %dir %{_libdir}/enlightenment/modules/illume-home
 %{_libdir}/enlightenment/modules/illume-home/e-module-illume-home.edj
 %dir %{_libdir}/enlightenment/modules/illume-home/linux-gnu-*
 %attr(755,root,root) %{_libdir}/enlightenment/modules/illume-home/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/illume-home/module.desktop
+#
+%dir %{_libdir}/enlightenment/modules/illume-home-toggle
+%{_libdir}/enlightenment/modules/illume-home-toggle/e-module-illume-home-toggle.edj
+%dir %{_libdir}/enlightenment/modules/illume-home-toggle/linux-gnu-*
+%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-home-toggle/linux-gnu-*/module.so
+%{_libdir}/enlightenment/modules/illume-home-toggle/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/illume-indicator
 %{_libdir}/enlightenment/modules/illume-indicator/e-module-illume-indicator.edj
@@ -456,17 +482,17 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root)  %{_libdir}/enlightenment/modules/notification/linux-*/module.so
 %{_libdir}/enlightenment/modules/notification/module.desktop
 #
-%dir %{_libdir}/enlightenment/modules/ofono
-%{_libdir}/enlightenment/modules/ofono/e-module-ofono.edj
-%dir %{_libdir}/enlightenment/modules/ofono/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/ofono/linux-gnu-*/module.so
-%{_libdir}/enlightenment/modules/ofono/module.desktop
-#
 %dir %{_libdir}/enlightenment/modules/pager
 %{_libdir}/enlightenment/modules/pager/e-module-pager.edj
 %dir %{_libdir}/enlightenment/modules/pager/linux-gnu-*
 %attr(755,root,root) %{_libdir}/enlightenment/modules/pager/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/pager/module.desktop
+#
+%dir %{_libdir}/enlightenment/modules/quickaccess
+%{_libdir}/enlightenment/modules/quickaccess/e-module-quickaccess.edj
+%dir %{_libdir}/enlightenment/modules/quickaccess/linux-gnu-*
+%attr(755,root,root) %{_libdir}/enlightenment/modules/quickaccess/linux-gnu-*/module.so
+%{_libdir}/enlightenment/modules/quickaccess/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/shot
 %{_libdir}/enlightenment/modules/shot/e-module-shot.edj
@@ -505,6 +531,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/enlightenment/modules/temperature/linux-gnu-*/tempget
 %{_libdir}/enlightenment/modules/temperature/module.desktop
 #
+%dir %{_libdir}/enlightenment/modules/tiling
+%{_libdir}/enlightenment/modules/tiling/e-module-tiling.edj
+%dir %{_libdir}/enlightenment/modules/tiling/linux-gnu-*
+%attr(755,root,root) %{_libdir}/enlightenment/modules/tiling/linux-gnu-*/module.so
+%{_libdir}/enlightenment/modules/tiling/module.desktop
+#
 %dir %{_libdir}/enlightenment/modules/winlist
 %{_libdir}/enlightenment/modules/winlist/e-module-winlist.edj
 %dir %{_libdir}/enlightenment/modules/winlist/linux-gnu-*
@@ -513,14 +545,17 @@ rm -rf $RPM_BUILD_ROOT
 #
 %dir %{_libdir}/enlightenment/modules/wizard
 %dir %{_libdir}/enlightenment/modules/wizard/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/wizard/linux-gnu-*/*.so
+%attr(755,root,root) %{_libdir}/enlightenment/modules/wizard/linux-gnu-*/module.so
+%attr(755,root,root) %{_libdir}/enlightenment/modules/wizard/linux-gnu-*/page_*.so
 %{_libdir}/enlightenment/modules/wizard/def-ibar.txt
 %{_libdir}/enlightenment/modules/wizard/desktop
 %{_libdir}/enlightenment/modules/wizard/extra_desktops
-%{_libdir}/enlightenment/modules/wizard/favorites
 #
-%dir %{_libdir}/enlightenment/preload
-%attr(755,root,root) %{_libdir}/enlightenment/preload/e_precache.so
+%dir %{_libdir}/enlightenment/modules/xkbswitch
+%{_libdir}/enlightenment/modules/xkbswitch/e-module-xkbswitch.edj
+%dir %{_libdir}/enlightenment/modules/xkbswitch/linux-gnu-*
+%attr(755,root,root) %{_libdir}/enlightenment/modules/xkbswitch/linux-gnu-*/module.so
+%{_libdir}/enlightenment/modules/xkbswitch/module.desktop
 #
 %dir %{_libdir}/enlightenment/utils
 %attr(755,root,root) %{_libdir}/enlightenment/utils/enlightenment_alert
@@ -528,11 +563,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/enlightenment/utils/enlightenment_fm
 %attr(755,root,root) %{_libdir}/enlightenment/utils/enlightenment_fm_op
 %attr(755,root,root) %{_libdir}/enlightenment/utils/enlightenment_init
+%attr(755,root,root) %{_libdir}/enlightenment/utils/enlightenment_static_grabber
 # SETUID ! allows rebooting, hibernating and shuting system down
 %attr(4755,root,root) %{_libdir}/enlightenment/utils/enlightenment_sys
 %attr(755,root,root) %{_libdir}/enlightenment/utils/enlightenment_thumb
 %{_datadir}/enlightenment
 #
+%{_desktopdir}/enlightenment_filemanager.desktop
 %{_datadir}/xsessions/enlightenment.desktop
 
 %files module-cpufreq-freqset
@@ -542,8 +579,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/enlightenment-config
 %dir %{_includedir}/enlightenment
-%{_includedir}/enlightenment/*.h
+%{_includedir}/enlightenment/e*.h
 %{_pkgconfigdir}/enlightenment.pc
 %{_pkgconfigdir}/everything.pc
