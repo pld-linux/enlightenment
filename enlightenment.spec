@@ -20,12 +20,12 @@ Summary:	Enlightenment Window Manager
 Summary(hu.UTF-8):	Enlightenment ablakkezelő
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
-Version:	0.17.0
+Version:	0.17.2.1
 Release:	1
 License:	BSD
 Group:		X11/Window Managers
 Source0:	http://download.enlightenment.org/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	b8f6a804964f1b5f4e7652a59d9fbfd1
+# Source0-md5:	a0da142a9a44540506149936bfc6e28c
 Source1:	%{name}-xsession.desktop
 Source2:	enlightenmentDR17-wcnt.txt
 URL:		http://enlightenment.org/
