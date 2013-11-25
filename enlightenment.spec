@@ -3,7 +3,7 @@
 # Conditonal build:
 %bcond_with	wayland		# Wayland clients in composite module
 #
-%define		efl_ver		1.7.4
+%define		efl_ver		1.7.9
 %define		ecore_ver	%{efl_ver}
 %define		edbus_ver	%{efl_ver}
 %define		edje_ver	%{efl_ver}
@@ -14,18 +14,18 @@
 %define		emotion_ver	%{efl_ver}
 %define		evas_ver	%{efl_ver}
 %define		eeze_ver	%{efl_ver}
-%define		elementary_ver	1.6.9.0
+%define		elementary_ver	%{efl_ver}
 
 Summary:	Enlightenment Window Manager
 Summary(hu.UTF-8):	Enlightenment ablakkezelő
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
-Version:	0.17.3
+Version:	0.17.5
 Release:	1
 License:	BSD
 Group:		X11/Window Managers
 Source0:	http://download.enlightenment.org/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	5c3eae5c568d71217e01c8be34205bac
+# Source0-md5:	6ba44073b26f85e3a0a053fbaf17b6be
 Source1:	%{name}-xsession.desktop
 Source2:	enlightenmentDR17-wcnt.txt
 URL:		http://enlightenment.org/
@@ -58,7 +58,7 @@ BuildRequires:	emotion-devel >= %{emotion_ver}
 #BuildRequires:	ephysics-devel
 BuildRequires:	evas-devel >= %{evas_ver}
 BuildRequires:	gettext-devel >= 0.17
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:2
 BuildRequires:	libxcb-devel
 BuildRequires:	pam-devel
 BuildRequires:	pkgconfig
