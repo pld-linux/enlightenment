@@ -1,97 +1,100 @@
 # TODO: verify install time dependencies
 #
 # Conditonal build:
+%bcond_with	systemd		# systemd (user session) support [TODO: enable by default after solving systemd dependency]
 %bcond_with	wayland		# Wayland clients in composite module
+%bcond_with	wayland_egl	# Wayland clients EGL rendering
 #
-%define		efl_ver		1.7.9
-%define		ecore_ver	%{efl_ver}
-%define		edbus_ver	%{efl_ver}
-%define		edje_ver	%{efl_ver}
-%define		eet_ver 	%{efl_ver}
-%define		efreet_ver	%{efl_ver}
-%define		eina_ver	%{efl_ver}
-%define		eio_ver		%{efl_ver}
-%define		emotion_ver	%{efl_ver}
-%define		evas_ver	%{efl_ver}
-%define		eeze_ver	%{efl_ver}
-%define		elementary_ver	%{efl_ver}
+%define		efl_ver		1.8.3
+%define		elementary_ver	1.8.2
 
 Summary:	Enlightenment Window Manager
 Summary(hu.UTF-8):	Enlightenment ablakkezelő
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
-Version:	0.17.5
+Version:	0.18.0
 Release:	1
 License:	BSD
 Group:		X11/Window Managers
-Source0:	http://download.enlightenment.org/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	6ba44073b26f85e3a0a053fbaf17b6be
+Source0:	http://download.enlightenment.org/rel/apps/enlightenment/%{name}-%{version}.tar.bz2
+# Source0-md5:	cb14b7967cfba0400b397cc449f2a688
 Source1:	%{name}-xsession.desktop
-Source2:	enlightenmentDR17-wcnt.txt
 URL:		http://enlightenment.org/
 BuildRequires:	alsa-lib-devel >= 1.0.8
-BuildRequires:	audit-libs-devel
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.11
+BuildRequires:	bluez-libs-devel
 BuildRequires:	dbus-devel
-# edbus, ehal
-BuildRequires:	e_dbus-devel >= %{edbus_ver}
-BuildRequires:	eeze-devel >= %{eeze_ver}
-BuildRequires:	ecore-con-devel >= %{ecore_ver}
-BuildRequires:	ecore-devel >= %{ecore_ver}
-BuildRequires:	ecore-evas-devel >= %{ecore_ver}
-BuildRequires:	ecore-file-devel >= %{ecore_ver}
-BuildRequires:	ecore-imf-devel >= %{ecore_ver}
-BuildRequires:	ecore-imf-evas-devel >= %{ecore_ver}
-BuildRequires:	ecore-input-devel >= %{ecore_ver}
-BuildRequires:	ecore-input-evas-devel >= %{ecore_ver}
-BuildRequires:	ecore-ipc-devel >= %{ecore_ver}
-BuildRequires:	ecore-x-devel >= %{ecore_ver}
-BuildRequires:	edje >= %{edje_ver}
-BuildRequires:	edje-devel >= %{edje_ver}
-BuildRequires:	eet-devel >= %{eet_ver}
-BuildRequires:	efreet-devel >= %{efreet_ver}
-BuildRequires:	eina-devel >= %{eina_ver}
-BuildRequires:	eio-devel >= %{eio_ver}
+BuildRequires:	doxygen
+BuildRequires:	ecore-con-devel >= %{efl_ver}
+BuildRequires:	ecore-devel >= %{efl_ver}
+BuildRequires:	ecore-evas-devel >= %{efl_ver}
+BuildRequires:	ecore-file-devel >= %{efl_ver}
+BuildRequires:	ecore-input-devel >= %{efl_ver}
+BuildRequires:	ecore-input-evas-devel >= %{efl_ver}
+BuildRequires:	ecore-ipc-devel >= %{efl_ver}
+BuildRequires:	ecore-x-devel >= %{efl_ver}
+BuildRequires:	edje >= %{efl_ver}
+BuildRequires:	edje-devel >= %{efl_ver}
+BuildRequires:	eet-devel >= %{efl_ver}
+BuildRequires:	eeze-devel >= %{efl_ver}
+BuildRequires:	efreet-devel >= %{efl_ver}
+BuildRequires:	eina-devel >= %{efl_ver}
+BuildRequires:	eio-devel >= %{efl_ver}
+BuildRequires:	eldbus-devel >= %{efl_ver}
 BuildRequires:	elementary-devel >= %{elementary_ver}
-BuildRequires:	emotion-devel >= %{emotion_ver}
-#BuildRequires:	ephysics-devel
-BuildRequires:	evas-devel >= %{evas_ver}
+BuildRequires:	elementary-devel < 1.8.99
+BuildRequires:	emotion-devel >= %{efl_ver}
+BuildRequires:	evas-devel >= %{efl_ver}
 BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	libtool >= 2:2
 BuildRequires:	libxcb-devel
 BuildRequires:	pam-devel
 BuildRequires:	pkgconfig
-BuildRequires:	sed >= 4.0
+%{?with_systemd:BuildRequires:	systemd-units >= 1:192}
 BuildRequires:	xcb-util-keysyms-devel
-BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xkeyboard-config
 %if %{with wayland}
-BuildRequires:	Mesa-libEGL-devel >= 7.10
-# glesv2
-BuildRequires:	Mesa-libGLES-devel
-BuildRequires:	Mesa-libGL-devel
-BuildRequires:	pixman-devel
+%{?with_wayland_egl:BuildRequires:	Mesa-libEGL-devel >= 7.10}
+BuildRequires:	pixman-devel >= 0.3
 # wayland-server
-BuildRequires:	wayland-devel
-BuildRequires:	xcb-util-image-devel
+BuildRequires:	wayland-devel >= 1.3.0
+BuildRequires:	xorg-lib-libxkbcommon-devel >= 0.3.0
 %endif
-Requires:	e_dbus >= %{edbus_ver}
-Requires:	edje >= %{edje_ver}
-Requires:	efreet >= %{efreet_ver}
-Requires:	enlightenment-theme-default = %{version}
-Requires:	evas-engine-buffer >= %{evas_ver}
-Requires:	evas-engine-software_x11 >= %{evas_ver}
-Requires:	evas-loader-eet >= %{evas_ver}
-Requires:	evas-loader-jpeg >= %{evas_ver}
-Requires:	evas-loader-png >= %{evas_ver}
-Requires:	fonts-TTF-bitstream-vera
-Requires:	vfmg >= 0.9.95
-Suggests:	enlightenment-utils-eeze
-Obsoletes:	enlightenmentDR17 >= 0.16.999
-Obsoletes:	enlightenmentDR17-libs >= 0.16.999
+Requires:	alsa-lib >= 1.0.8
+Requires:	ecore >= %{efl_ver}
+Requires:	ecore-con >= %{efl_ver}
+Requires:	ecore-evas >= %{efl_ver}
+Requires:	ecore-file >= %{efl_ver}
+Requires:	ecore-input >= %{efl_ver}
+Requires:	ecore-input-evas >= %{efl_ver}
+Requires:	ecore-ipc >= %{efl_ver}
+Requires:	ecore-x >= %{efl_ver}
+Requires:	edje-libs >= %{efl_ver}
+Requires:	eet >= %{efl_ver}
+Requires:	eeze >= %{efl_ver}
+Requires:	efreet >= %{efl_ver}
+Requires:	eina >= %{efl_ver}
+Requires:	eio >= %{efl_ver}
+Requires:	eldbus >= %{efl_ver}
+Requires:	elementary >= %{elementary_ver}
+Requires:	emotion >= %{efl_ver}
+Requires:	evas >= %{efl_ver}
+Requires:	evas-engine-software_x11 >= %{efl_ver}
+Requires:	evas-loader-jpeg >= %{efl_ver}
+Requires:	evas-loader-png >= %{efl_ver}
+%{?with_systemd:Requires:	systemd-units >= 1:192}
+%if %{with wayland}
+%{?with_wayland_egl:Requires:	Mesa-libEGL >= 7.10}
+Requires:	pixman >= 0.3
+Requires:	wayland >= 1.3.0
+Requires:	xorg-lib-libxkbcommon >= 0.3.0
+%endif
+Suggests:	vfmg >= 0.9.95
+Obsoletes:	enlightenmentDR17
+Obsoletes:	enlightenmentDR17-libs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%{expand:%%define	_sysconfdir	%{_sysconfdir}/X11}
 %undefine	__cxx
 
 %description
@@ -112,7 +115,7 @@ Summary(hu.UTF-8):	CPU sebesség menedzselő program
 Summary(pl.UTF-8):	Program do zaządzania szybkością CPU
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
-Obsoletes:	enlightenmentDR17-module-cpufreq-freqset >= 0.16.999
+Obsoletes:	enlightenmentDR17-module-cpufreq-freqset
 
 %description module-cpufreq-freqset
 freqset makes you able to change CPU frequency using cpufreq module.
@@ -136,23 +139,27 @@ Summary:	Development headers for Enlightenment
 Summary(hu.UTF-8):	Fejlesztői fájlok Enlightenment-hez
 Summary(pl.UTF-8):	Pliki nagłówkowe dla Enlightenmenta
 Group:		Development/Libraries
-# by headers included in e.h
-# ecore-con ecore-ipc ecore-job ecore-txt ecore-config
-Requires:	ecore-devel >= %{ecore_ver}
-Requires:	ecore-evas-devel >= %{ecore_ver}
-Requires:	ecore-file-devel >= %{ecore_ver}
-Requires:	ecore-input-devel >= %{ecore_ver}
-Requires:	ecore-input-evas-devel >= %{ecore_ver}
-Requires:	ecore-ipc-devel >= %{ecore_ver}
-Requires:	ecore-x-devel >= %{ecore_ver}
-Requires:	e_dbus-devel >= %{edbus_ver}
-Requires:	edje-devel >= %{edje_ver}
-Requires:	eet-devel >= %{eet_ver}
-Requires:	efreet-devel >= %{efreet_ver}
-Requires:	eio-devel >= %{eio_ver}
+# doesn't require base
+Requires:	ecore-devel >= %{efl_ver}
+Requires:	ecore-con-devel >= %{efl_ver}
+Requires:	ecore-evas-devel >= %{efl_ver}
+Requires:	ecore-file-devel >= %{efl_ver}
+Requires:	ecore-input-devel >= %{efl_ver}
+Requires:	ecore-input-evas-devel >= %{efl_ver}
+Requires:	ecore-ipc-devel >= %{efl_ver}
+Requires:	ecore-x-devel >= %{efl_ver}
+Requires:	edje-devel >= %{efl_ver}
+Requires:	eet-devel >= %{efl_ver}
+Requires:	eeze-devel >= %{efl_ver}
+Requires:	efreet-devel >= %{efl_ver}
+Requires:	eina-devel >= %{efl_ver}
+Requires:	eio-devel >= %{efl_ver}
+Requires:	eldbus-devel >= %{efl_ver}
 Requires:	elementary-devel >= %{elementary_ver}
-Requires:	emotion-devel >= %{emotion_ver}
-Obsoletes:	enlightenmentDR17-devel >= 0.16.999
+Requires:	elementary-devel < 1.8.99
+Requires:	emotion-devel >= %{efl_ver}
+Requires:	evas-devel >= %{efl_ver}
+Obsoletes:	enlightenmentDR17-devel
 
 %description devel
 Development headers for Enlightenment.
@@ -176,32 +183,25 @@ Pliki nagłówkowe dla Enlightenmenta.
 %configure \
 	--disable-silent-rules \
 	--disable-static \
+	%{!?with_systemd:--disable-systemd} \
 	%{?with_wayland:--enable-wayland-clients} \
+	%{?with_wayland_egl:--enable-wayland-egl} \
 	--with-profile=SLOW_PC
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_datadir}/%{name}/data/themes/default.edj
+install -D %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
 
+# recheck: still valid for E18?
 install -d $RPM_BUILD_ROOT%{_libdir}/enlightenment/modules_extra
-install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/config-apps
-install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
-install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/%{name}/wcnt.txt
-find $RPM_BUILD_ROOT%{_libdir}/enlightenment -name '*.la' | xargs %{__rm}
+install -d $RPM_BUILD_ROOT%{_datadir}/enlightenment/config-apps
 
-#cd $RPM_BUILD_ROOT%{_datadir}/%{name}/data/fonts
-#VERA=$(ls Vera*.ttf)
-#for FONT in $VERA; do
-#	rm -f $FONT
-#	ln -s %{_fontsdir}/TTF/$FONT .
-#done
-#cd -
+find $RPM_BUILD_ROOT%{_libdir}/enlightenment -name '*.la' | xargs %{__rm}
 
 %find_lang %{name}
 
@@ -210,8 +210,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
-#/etc/X11/xdg/menus/enlightenment.menu
+%doc AUTHORS COPYING ChangeLog NEWS README
+/etc/xdg/menus/enlightenment.menu
 %dir %{_sysconfdir}/enlightenment
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/enlightenment/sysactions.conf
 %attr(755,root,root) %{_bindir}/enlightenment
@@ -220,13 +220,29 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/enlightenment_open
 %attr(755,root,root) %{_bindir}/enlightenment_remote
 %attr(755,root,root) %{_bindir}/enlightenment_start
+%if %{with systemd}
+# FIXME: move dir to systemd-units?
+%{_libdir}/systemd/user/e18.service
+%endif
 %dir %{_libdir}/enlightenment
 %dir %{_libdir}/enlightenment/modules
+%dir %{_libdir}/enlightenment/modules_extra
+#
+%dir %{_libdir}/enlightenment/modules/access
+%dir %{_libdir}/enlightenment/modules/access/linux-gnu-*
+%attr(755,root,root) %{_libdir}/enlightenment/modules/access/linux-gnu-*/module.so
+%{_libdir}/enlightenment/modules/access/module.desktop
+#
+%dir %{_libdir}/enlightenment/modules/appmenu
+%{_libdir}/enlightenment/modules/appmenu/e-module-appmenu.edj
+%dir %{_libdir}/enlightenment/modules/appmenu/linux-gnu-*
+%attr(755,root,root) %{_libdir}/enlightenment/modules/appmenu/linux-gnu-*/module.so
+%{_libdir}/enlightenment/modules/appmenu/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/backlight
 %{_libdir}/enlightenment/modules/backlight/e-module-backlight.edj
-%dir %{_libdir}/enlightenment/modules/backlight/linux-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/backlight/linux-*/module.so
+%dir %{_libdir}/enlightenment/modules/backlight/linux-gnu-*
+%attr(755,root,root) %{_libdir}/enlightenment/modules/backlight/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/backlight/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/battery
@@ -236,17 +252,17 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/enlightenment/modules/battery/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/battery/module.desktop
 #
+%dir %{_libdir}/enlightenment/modules/bluez4
+%{_libdir}/enlightenment/modules/bluez4/e-module-bluez4.edj
+%dir %{_libdir}/enlightenment/modules/bluez4/linux-gnu-*
+%attr(755,root,root) %{_libdir}/enlightenment/modules/bluez4/linux-gnu-*/module.so
+%{_libdir}/enlightenment/modules/bluez4/module.desktop
+#
 %dir %{_libdir}/enlightenment/modules/clock
 %{_libdir}/enlightenment/modules/clock/e-module-clock.edj
 %dir %{_libdir}/enlightenment/modules/clock/linux-gnu-*
 %attr(755,root,root) %{_libdir}/enlightenment/modules/clock/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/clock/module.desktop
-#
-%dir %{_libdir}/enlightenment/modules/comp
-%{_libdir}/enlightenment/modules/comp/e-module-comp.edj
-%dir %{_libdir}/enlightenment/modules/comp/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/comp/linux-gnu-*/module.so
-%{_libdir}/enlightenment/modules/comp/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf
 %{_libdir}/enlightenment/modules/conf/e-module-conf.edj
@@ -260,6 +276,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/enlightenment/modules/conf_applications/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/conf_applications/module.desktop
 #
+%dir %{_libdir}/enlightenment/modules/conf_bindings
+%dir %{_libdir}/enlightenment/modules/conf_bindings/linux-gnu-*
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_bindings/linux-gnu-*/module.so
+%{_libdir}/enlightenment/modules/conf_bindings/module.desktop
+#
+%dir %{_libdir}/enlightenment/modules/conf_comp
+%dir %{_libdir}/enlightenment/modules/conf_comp/linux-gnu-*
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_comp/linux-gnu-*/module.so
+%{_libdir}/enlightenment/modules/conf_comp/module.desktop
+#
 %dir %{_libdir}/enlightenment/modules/conf_dialogs
 %{_libdir}/enlightenment/modules/conf_dialogs/e-module-conf_dialogs.edj
 %dir %{_libdir}/enlightenment/modules/conf_dialogs/linux-gnu-*
@@ -271,12 +297,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/enlightenment/modules/conf_display/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/conf_display/module.desktop
 #
-%dir %{_libdir}/enlightenment/modules/conf_edgebindings
-%{_libdir}/enlightenment/modules/conf_edgebindings/e-module-conf_edgebindings.edj
-%dir %{_libdir}/enlightenment/modules/conf_edgebindings/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_edgebindings/linux-gnu-*/module.so
-%{_libdir}/enlightenment/modules/conf_edgebindings/module.desktop
-#
 %dir %{_libdir}/enlightenment/modules/conf_interaction
 %{_libdir}/enlightenment/modules/conf_interaction/e-module-conf_interaction.edj
 %dir %{_libdir}/enlightenment/modules/conf_interaction/linux-gnu-*
@@ -287,11 +307,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/enlightenment/modules/conf_intl/linux-gnu-*
 %attr(755,root,root) %{_libdir}/enlightenment/modules/conf_intl/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/conf_intl/module.desktop
-#
-%dir %{_libdir}/enlightenment/modules/conf_keybindings
-%dir %{_libdir}/enlightenment/modules/conf_keybindings/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_keybindings/linux-gnu-*/module.so
-%{_libdir}/enlightenment/modules/conf_keybindings/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_menus
 %{_libdir}/enlightenment/modules/conf_menus/e-module-conf_menus.edj
@@ -327,11 +342,11 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/enlightenment/modules/conf_theme/linux-gnu-*
 %attr(755,root,root) %{_libdir}/enlightenment/modules/conf_theme/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/conf_theme/module.desktop
-# disabled in configure
-#%dir %{_libdir}/enlightenment/modules/conf_wallpaper2
-#%dir %{_libdir}/enlightenment/modules/conf_wallpaper2/linux-gnu-*
-#%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_wallpaper2/linux-gnu-*/module.so
-#%{_libdir}/enlightenment/modules/conf_wallpaper2/module.desktop
+#
+%dir %{_libdir}/enlightenment/modules/conf_wallpaper2
+%dir %{_libdir}/enlightenment/modules/conf_wallpaper2/linux-gnu-*
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_wallpaper2/linux-gnu-*/module.so
+%{_libdir}/enlightenment/modules/conf_wallpaper2/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_window_manipulation
 %dir %{_libdir}/enlightenment/modules/conf_window_manipulation/linux-gnu-*
@@ -350,17 +365,17 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/enlightenment/modules/connman/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/connman/module.desktop
 #
+%dir %{_libdir}/enlightenment/modules/contact
+%{_libdir}/enlightenment/modules/contact/e-module-contact.edj
+%dir %{_libdir}/enlightenment/modules/contact/linux-gnu-*
+%attr(755,root,root) %{_libdir}/enlightenment/modules/contact/linux-gnu-*/module.so
+%{_libdir}/enlightenment/modules/contact/module.desktop
+#
 %dir %{_libdir}/enlightenment/modules/cpufreq
 %{_libdir}/enlightenment/modules/cpufreq/e-module-cpufreq.edj
 %dir %{_libdir}/enlightenment/modules/cpufreq/linux-gnu-*
 %attr(755,root,root) %{_libdir}/enlightenment/modules/cpufreq/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/cpufreq/module.desktop
-#
-%dir %{_libdir}/enlightenment/modules/dropshadow
-%{_libdir}/enlightenment/modules/dropshadow/e-module-dropshadow.edj
-%dir %{_libdir}/enlightenment/modules/dropshadow/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/dropshadow/linux-gnu-*/module.so
-%{_libdir}/enlightenment/modules/dropshadow/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/everything
 %{_libdir}/enlightenment/modules/everything/e-module-everything-start.edj
@@ -476,6 +491,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/enlightenment/modules/msgbus/linux-gnu-*/module.so
 %{_libdir}/enlightenment/modules/msgbus/module.desktop
 #
+%dir %{_libdir}/enlightenment/modules/music-control
+%{_libdir}/enlightenment/modules/music-control/e-module-music-control.edj
+%dir %{_libdir}/enlightenment/modules/music-control/linux-gnu-*
+%attr(755,root,root) %{_libdir}/enlightenment/modules/music-control/linux-gnu-*/module.so
+%{_libdir}/enlightenment/modules/music-control/module.desktop
+#
 %dir %{_libdir}/enlightenment/modules/notification
 %{_libdir}/enlightenment/modules/notification/e-module-notification.edj
 %dir %{_libdir}/enlightenment/modules/notification/linux-*
@@ -524,6 +545,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/enlightenment/modules/tasks/linux-*/module.so
 %{_libdir}/enlightenment/modules/tasks/module.desktop
 #
+%dir %{_libdir}/enlightenment/modules/teamwork
+%{_libdir}/enlightenment/modules/teamwork/e-module-teamwork.edj
+%dir %{_libdir}/enlightenment/modules/teamwork/linux-*
+%attr(755,root,root) %{_libdir}/enlightenment/modules/teamwork/linux-*/module.so
+%{_libdir}/enlightenment/modules/teamwork/module.desktop
+#
 %dir %{_libdir}/enlightenment/modules/temperature
 %{_libdir}/enlightenment/modules/temperature/e-module-temperature.edj
 %dir %{_libdir}/enlightenment/modules/temperature/linux-gnu-*
@@ -549,7 +576,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/enlightenment/modules/wizard/linux-gnu-*/page_*.so
 %{_libdir}/enlightenment/modules/wizard/def-ibar.txt
 %{_libdir}/enlightenment/modules/wizard/desktop
-%{_libdir}/enlightenment/modules/wizard/extra_desktops
 #
 %dir %{_libdir}/enlightenment/modules/xkbswitch
 %{_libdir}/enlightenment/modules/xkbswitch/e-module-xkbswitch.edj
@@ -562,13 +588,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/enlightenment/utils/enlightenment_backlight
 %attr(755,root,root) %{_libdir}/enlightenment/utils/enlightenment_fm
 %attr(755,root,root) %{_libdir}/enlightenment/utils/enlightenment_fm_op
-%attr(755,root,root) %{_libdir}/enlightenment/utils/enlightenment_init
 %attr(755,root,root) %{_libdir}/enlightenment/utils/enlightenment_static_grabber
-# SETUID ! allows rebooting, hibernating and shuting system down
+# SETUID root: allows rebooting, hibernating and shuting system down
 %attr(4755,root,root) %{_libdir}/enlightenment/utils/enlightenment_sys
 %attr(755,root,root) %{_libdir}/enlightenment/utils/enlightenment_thumb
 %{_datadir}/enlightenment
-#
 %{_desktopdir}/enlightenment_filemanager.desktop
 %{_datadir}/xsessions/enlightenment.desktop
 
@@ -580,6 +604,8 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %dir %{_includedir}/enlightenment
-%{_includedir}/enlightenment/e*.h
+%{_includedir}/enlightenment/e.h
+%{_includedir}/enlightenment/e_*.h
+%{_includedir}/enlightenment/evry_*.h
 %{_pkgconfigdir}/enlightenment.pc
 %{_pkgconfigdir}/everything.pc
