@@ -1,7 +1,7 @@
 # TODO: verify install time dependencies
 #
 # Conditonal build:
-%bcond_with	systemd		# systemd (user session) support [TODO: enable by default after solving systemd dependency]
+%bcond_without	systemd		# systemd (user session) support
 %bcond_with	wayland		# Wayland clients in composite module
 %bcond_with	wayland_egl	# Wayland clients EGL rendering
 #
@@ -221,8 +221,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/enlightenment_remote
 %attr(755,root,root) %{_bindir}/enlightenment_start
 %if %{with systemd}
-# FIXME: move dir to systemd-units?
-%{_libdir}/systemd/user/e18.service
+%{_prefix}/lib/systemd/user/e18.service
 %endif
 %dir %{_libdir}/enlightenment
 %dir %{_libdir}/enlightenment/modules
