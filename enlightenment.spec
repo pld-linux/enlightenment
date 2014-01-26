@@ -3,7 +3,7 @@
 # Conditonal build:
 %bcond_with	wayland		# Wayland clients in composite module
 #
-%define		efl_ver		1.7.9
+%define		efl_ver		1.7.10
 %define		ecore_ver	%{efl_ver}
 %define		edbus_ver	%{efl_ver}
 %define		edje_ver	%{efl_ver}
