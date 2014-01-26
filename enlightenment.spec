@@ -20,12 +20,12 @@ Summary:	Enlightenment Window Manager
 Summary(hu.UTF-8):	Enlightenment ablakkezelő
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
-Version:	0.17.5
+Version:	0.17.6
 Release:	1
 License:	BSD
 Group:		X11/Window Managers
 Source0:	http://download.enlightenment.org/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	6ba44073b26f85e3a0a053fbaf17b6be
+# Source0-md5:	2bbbff352b03e9eb86d173f0d4dea37a
 Source1:	%{name}-xsession.desktop
 Source2:	enlightenmentDR17-wcnt.txt
 URL:		http://enlightenment.org/
@@ -185,7 +185,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	menusdir=/etc/xdg/menus
 
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/%{name}/data/themes/default.edj
 
@@ -211,9 +212,9 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-#/etc/X11/xdg/menus/enlightenment.menu
 %dir %{_sysconfdir}/enlightenment
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/enlightenment/sysactions.conf
+/etc/xdg/menus/enlightenment.menu
 %attr(755,root,root) %{_bindir}/enlightenment
 %attr(755,root,root) %{_bindir}/enlightenment_filemanager
 %attr(755,root,root) %{_bindir}/enlightenment_imc
