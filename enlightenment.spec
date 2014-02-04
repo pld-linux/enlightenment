@@ -12,13 +12,16 @@ Summary:	Enlightenment Window Manager
 Summary(hu.UTF-8):	Enlightenment ablakkezelő
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
-Version:	0.18.2
+Version:	0.18.3
 Release:	1
 License:	BSD
 Group:		X11/Window Managers
 Source0:	http://download.enlightenment.org/rel/apps/enlightenment/%{name}-%{version}.tar.bz2
-# Source0-md5:	af8baee80ad5285cef139aadcf5a0495
+# Source0-md5:	1ce67de50f48f49e4803023f2426d997
 Source1:	%{name}-xsession.desktop
+Source2:	e-module-wl_desktop_shell.edj
+Source3:	e-module-wl_screenshot.edj
+Patch0:		%{name}-missing.patch
 URL:		http://enlightenment.org/
 BuildRequires:	alsa-lib-devel >= 1.0.8
 BuildRequires:	autoconf >= 2.59-9
@@ -172,6 +175,10 @@ Pliki nagłówkowe dla Enlightenmenta.
 
 %prep
 %setup -q
+# missing files
+%patch0 -p1
+cp -p %{SOURCE2} src/modules/wl_desktop_shell
+cp -p %{SOURCE3} src/modules/wl_screenshot
 
 %build
 %{__gettextize}
@@ -575,6 +582,19 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/enlightenment/modules/wizard/linux-gnu-*/page_*.so
 %{_libdir}/enlightenment/modules/wizard/def-ibar.txt
 %{_libdir}/enlightenment/modules/wizard/desktop
+#
+%if %{with wayland}
+%dir %{_libdir}/enlightenment/modules/wl_desktop_shell
+%dir %{_libdir}/enlightenment/modules/wl_desktop_shell/linux-gnu-*
+%attr(755,root,root) %{_libdir}/enlightenment/modules/wl_desktop_shell/linux-gnu-*/module.so
+%attr(755,root,root) %{_libdir}/enlightenment/modules/wl_desktop_shell/module.desktop
+%attr(755,root,root) %{_libdir}/enlightenment/modules/wl_desktop_shell/*.edj
+%dir %{_libdir}/enlightenment/modules/wl_screenshot
+%dir %{_libdir}/enlightenment/modules/wl_screenshot/linux-gnu-*
+%attr(755,root,root) %{_libdir}/enlightenment/modules/wl_screenshot/linux-gnu-*/module.so
+%attr(755,root,root) %{_libdir}/enlightenment/modules/wl_screenshot/module.desktop
+%attr(755,root,root) %{_libdir}/enlightenment/modules/wl_screenshot/*.edj
+%endif
 #
 %dir %{_libdir}/enlightenment/modules/xkbswitch
 %{_libdir}/enlightenment/modules/xkbswitch/e-module-xkbswitch.edj
