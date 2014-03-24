@@ -12,12 +12,12 @@ Summary:	Enlightenment Window Manager
 Summary(hu.UTF-8):	Enlightenment ablakkezelő
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
-Version:	0.18.3
+Version:	0.18.5
 Release:	1
 License:	BSD
 Group:		X11/Window Managers
 Source0:	http://download.enlightenment.org/rel/apps/enlightenment/%{name}-%{version}.tar.bz2
-# Source0-md5:	1ce67de50f48f49e4803023f2426d997
+# Source0-md5:	444c1e57dacb45c0fa2c5abebc78b66d
 Source1:	%{name}-xsession.desktop
 Source2:	e-module-wl_desktop_shell.edj
 Source3:	e-module-wl_screenshot.edj
@@ -46,7 +46,6 @@ BuildRequires:	eina-devel >= %{efl_ver}
 BuildRequires:	eio-devel >= %{efl_ver}
 BuildRequires:	eldbus-devel >= %{efl_ver}
 BuildRequires:	elementary-devel >= %{elementary_ver}
-BuildRequires:	elementary-devel < 1.8.99
 BuildRequires:	emotion-devel >= %{efl_ver}
 BuildRequires:	evas-devel >= %{efl_ver}
 BuildRequires:	gettext-devel >= 0.17
@@ -159,7 +158,6 @@ Requires:	eina-devel >= %{efl_ver}
 Requires:	eio-devel >= %{efl_ver}
 Requires:	eldbus-devel >= %{efl_ver}
 Requires:	elementary-devel >= %{elementary_ver}
-Requires:	elementary-devel < 1.8.99
 Requires:	emotion-devel >= %{efl_ver}
 Requires:	evas-devel >= %{efl_ver}
 Obsoletes:	enlightenmentDR17-devel
