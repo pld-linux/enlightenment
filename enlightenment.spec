@@ -45,7 +45,7 @@ BuildRequires:	eldbus-devel >= %{efl_ver}
 BuildRequires:	elementary-devel >= %{elementary_ver}
 BuildRequires:	emotion-devel >= %{efl_ver}
 BuildRequires:	evas-devel >= %{efl_ver}
-BuildRequires:	gettext-devel >= 0.17
+BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	libtool >= 2:2
 BuildRequires:	libxcb-devel
 BuildRequires:	pam-devel
