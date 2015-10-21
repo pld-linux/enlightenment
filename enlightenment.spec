@@ -96,6 +96,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %undefine	__cxx
 
+%define		basearch	%(echo %{_target_platform} | cut -d- -f1)
+%define		arch_tag	linux%{_gnu}-%{basearch}-ver-00
+
 %description
 Enlightenment is a Windowmanager for X Window that is designed to be
 powerful, extensible, configurable and able to be really good looking.
@@ -226,101 +229,101 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/enlightenment/modules_extra
 #
 %dir %{_libdir}/enlightenment/modules/access
-%dir %{_libdir}/enlightenment/modules/access/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/access/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/access/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/access/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/access/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/appmenu
 %{_libdir}/enlightenment/modules/appmenu/e-module-appmenu.edj
-%dir %{_libdir}/enlightenment/modules/appmenu/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/appmenu/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/appmenu/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/appmenu/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/appmenu/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/backlight
 %{_libdir}/enlightenment/modules/backlight/e-module-backlight.edj
-%dir %{_libdir}/enlightenment/modules/backlight/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/backlight/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/backlight/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/backlight/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/backlight/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/battery
 %{_libdir}/enlightenment/modules/battery/e-module-battery.edj
-%dir %{_libdir}/enlightenment/modules/battery/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/battery/linux-gnu-*/batget
-%attr(755,root,root) %{_libdir}/enlightenment/modules/battery/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/battery/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/battery/%{arch_tag}/batget
+%attr(755,root,root) %{_libdir}/enlightenment/modules/battery/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/battery/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/bluez4
 %{_libdir}/enlightenment/modules/bluez4/e-module-bluez4.edj
-%dir %{_libdir}/enlightenment/modules/bluez4/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/bluez4/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/bluez4/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/bluez4/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/bluez4/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/clock
 %{_libdir}/enlightenment/modules/clock/e-module-clock.edj
-%dir %{_libdir}/enlightenment/modules/clock/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/clock/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/clock/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/clock/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/clock/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf
 %{_libdir}/enlightenment/modules/conf/e-module-conf.edj
-%dir %{_libdir}/enlightenment/modules/conf/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/conf/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/conf/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_applications
 %{_libdir}/enlightenment/modules/conf_applications/e-module-conf_applications.edj
-%dir %{_libdir}/enlightenment/modules/conf_applications/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_applications/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/conf_applications/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_applications/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/conf_applications/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_bindings
-%dir %{_libdir}/enlightenment/modules/conf_bindings/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_bindings/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/conf_bindings/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_bindings/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/conf_bindings/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_comp
-%dir %{_libdir}/enlightenment/modules/conf_comp/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_comp/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/conf_comp/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_comp/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/conf_comp/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_dialogs
 %{_libdir}/enlightenment/modules/conf_dialogs/e-module-conf_dialogs.edj
-%dir %{_libdir}/enlightenment/modules/conf_dialogs/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_dialogs/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/conf_dialogs/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_dialogs/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/conf_dialogs/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_display
-%dir %{_libdir}/enlightenment/modules/conf_display/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_display/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/conf_display/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_display/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/conf_display/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_interaction
 %{_libdir}/enlightenment/modules/conf_interaction/e-module-conf_interaction.edj
-%dir %{_libdir}/enlightenment/modules/conf_interaction/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_interaction/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/conf_interaction/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_interaction/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/conf_interaction/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_intl
-%dir %{_libdir}/enlightenment/modules/conf_intl/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_intl/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/conf_intl/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_intl/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/conf_intl/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_menus
 %{_libdir}/enlightenment/modules/conf_menus/e-module-conf_menus.edj
-%dir %{_libdir}/enlightenment/modules/conf_menus/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_menus/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/conf_menus/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_menus/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/conf_menus/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_paths
 %{_libdir}/enlightenment/modules/conf_paths/e-module-conf_paths.edj
-%dir %{_libdir}/enlightenment/modules/conf_paths/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_paths/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/conf_paths/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_paths/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/conf_paths/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_performance
 %{_libdir}/enlightenment/modules/conf_performance/e-module-conf_performance.edj
-%dir %{_libdir}/enlightenment/modules/conf_performance/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_performance/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/conf_performance/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_performance/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/conf_performance/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_randr
@@ -331,114 +334,114 @@ rm -rf $RPM_BUILD_ROOT
 #
 %dir %{_libdir}/enlightenment/modules/conf_shelves
 %{_libdir}/enlightenment/modules/conf_shelves/e-module-conf_shelves.edj
-%dir %{_libdir}/enlightenment/modules/conf_shelves/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_shelves/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/conf_shelves/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_shelves/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/conf_shelves/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_theme
-%dir %{_libdir}/enlightenment/modules/conf_theme/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_theme/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/conf_theme/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_theme/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/conf_theme/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_wallpaper2
-%dir %{_libdir}/enlightenment/modules/conf_wallpaper2/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_wallpaper2/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/conf_wallpaper2/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_wallpaper2/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/conf_wallpaper2/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_window_manipulation
-%dir %{_libdir}/enlightenment/modules/conf_window_manipulation/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_window_manipulation/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/conf_window_manipulation/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_window_manipulation/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/conf_window_manipulation/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/conf_window_remembers
 %{_libdir}/enlightenment/modules/conf_window_remembers/e-module-conf_window_remembers.edj
-%dir %{_libdir}/enlightenment/modules/conf_window_remembers/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_window_remembers/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/conf_window_remembers/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/conf_window_remembers/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/conf_window_remembers/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/connman
 %{_libdir}/enlightenment/modules/connman/e-module-connman.edj
-%dir %{_libdir}/enlightenment/modules/connman/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/connman/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/connman/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/connman/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/connman/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/contact
 %{_libdir}/enlightenment/modules/contact/e-module-contact.edj
-%dir %{_libdir}/enlightenment/modules/contact/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/contact/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/contact/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/contact/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/contact/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/cpufreq
 %{_libdir}/enlightenment/modules/cpufreq/e-module-cpufreq.edj
-%dir %{_libdir}/enlightenment/modules/cpufreq/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/cpufreq/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/cpufreq/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/cpufreq/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/cpufreq/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/everything
 %{_libdir}/enlightenment/modules/everything/e-module-everything-start.edj
 %{_libdir}/enlightenment/modules/everything/e-module-everything.edj
-%dir %{_libdir}/enlightenment/modules/everything/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/everything/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/everything/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/everything/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/everything/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/fileman
 %{_libdir}/enlightenment/modules/fileman/e-module-fileman.edj
-%dir %{_libdir}/enlightenment/modules/fileman/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/fileman/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/fileman/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/fileman/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/fileman/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/fileman_opinfo
 %{_libdir}/enlightenment/modules/fileman_opinfo/e-module-fileman_opinfo.edj
-%dir %{_libdir}/enlightenment/modules/fileman_opinfo/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/fileman_opinfo/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/fileman_opinfo/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/fileman_opinfo/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/fileman_opinfo/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/gadman
 %{_libdir}/enlightenment/modules/gadman/e-module-gadman.edj
-%dir %{_libdir}/enlightenment/modules/gadman/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/gadman/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/gadman/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/gadman/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/gadman/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/ibar
 %{_libdir}/enlightenment/modules/ibar/e-module-ibar.edj
-%dir %{_libdir}/enlightenment/modules/ibar/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/ibar/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/ibar/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/ibar/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/ibar/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/ibox
 %{_libdir}/enlightenment/modules/ibox/e-module-ibox.edj
-%dir %{_libdir}/enlightenment/modules/ibox/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/ibox/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/ibox/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/ibox/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/ibox/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/illume-bluetooth
 %{_libdir}/enlightenment/modules/illume-bluetooth/e-module-illume-bluetooth.edj
-%dir %{_libdir}/enlightenment/modules/illume-bluetooth/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-bluetooth/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/illume-bluetooth/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-bluetooth/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/illume-bluetooth/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/illume-home
 %{_libdir}/enlightenment/modules/illume-home/e-module-illume-home.edj
-%dir %{_libdir}/enlightenment/modules/illume-home/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-home/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/illume-home/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-home/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/illume-home/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/illume-home-toggle
 %{_libdir}/enlightenment/modules/illume-home-toggle/e-module-illume-home-toggle.edj
-%dir %{_libdir}/enlightenment/modules/illume-home-toggle/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-home-toggle/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/illume-home-toggle/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-home-toggle/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/illume-home-toggle/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/illume-indicator
 %{_libdir}/enlightenment/modules/illume-indicator/e-module-illume-indicator.edj
-%dir %{_libdir}/enlightenment/modules/illume-indicator/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-indicator/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/illume-indicator/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-indicator/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/illume-indicator/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/illume-kbd-toggle
 %{_libdir}/enlightenment/modules/illume-kbd-toggle/e-module-illume-kbd-toggle.edj
-%dir %{_libdir}/enlightenment/modules/illume-kbd-toggle/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-kbd-toggle/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/illume-kbd-toggle/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-kbd-toggle/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/illume-kbd-toggle/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/illume-keyboard
@@ -449,28 +452,28 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/enlightenment/modules/illume-keyboard/keyboards/ignore_built_in_keyboards
 %{_libdir}/enlightenment/modules/illume-keyboard/keyboards/*.kbd
 %{_libdir}/enlightenment/modules/illume-keyboard/keyboards/*.png
-%dir %{_libdir}/enlightenment/modules/illume-keyboard/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-keyboard/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/illume-keyboard/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-keyboard/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/illume-keyboard/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/illume-mode-toggle
 %{_libdir}/enlightenment/modules/illume-mode-toggle/e-module-illume-mode-toggle.edj
-%dir %{_libdir}/enlightenment/modules/illume-mode-toggle/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-mode-toggle/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/illume-mode-toggle/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-mode-toggle/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/illume-mode-toggle/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/illume-softkey
 %{_libdir}/enlightenment/modules/illume-softkey/e-module-illume-softkey.edj
-%dir %{_libdir}/enlightenment/modules/illume-softkey/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-softkey/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/illume-softkey/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/illume-softkey/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/illume-softkey/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/illume2
 %{_libdir}/enlightenment/modules/illume2/e-module-illume2.edj
 %dir %{_libdir}/enlightenment/modules/illume2/keyboards
 %{_libdir}/enlightenment/modules/illume2/keyboards/ignore_built_in_keyboards
-%dir %{_libdir}/enlightenment/modules/illume2/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/illume2/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/illume2/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/illume2/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/illume2/module.desktop
 %dir %{_libdir}/enlightenment/modules/illume2/policies
 %attr(755,root,root) %{_libdir}/enlightenment/modules/illume2/policies/illume.so
@@ -478,20 +481,20 @@ rm -rf $RPM_BUILD_ROOT
 #
 %dir %{_libdir}/enlightenment/modules/mixer
 %{_libdir}/enlightenment/modules/mixer/e-module-mixer.edj
-%dir %{_libdir}/enlightenment/modules/mixer/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/mixer/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/mixer/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/mixer/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/mixer/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/msgbus
 %{_libdir}/enlightenment/modules/msgbus/e-module-msgbus.edj
-%dir %{_libdir}/enlightenment/modules/msgbus/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/msgbus/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/msgbus/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/msgbus/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/msgbus/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/music-control
 %{_libdir}/enlightenment/modules/music-control/e-module-music-control.edj
-%dir %{_libdir}/enlightenment/modules/music-control/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/music-control/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/music-control/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/music-control/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/music-control/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/notification
@@ -502,14 +505,14 @@ rm -rf $RPM_BUILD_ROOT
 #
 %dir %{_libdir}/enlightenment/modules/pager
 %{_libdir}/enlightenment/modules/pager/e-module-pager.edj
-%dir %{_libdir}/enlightenment/modules/pager/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/pager/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/pager/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/pager/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/pager/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/quickaccess
 %{_libdir}/enlightenment/modules/quickaccess/e-module-quickaccess.edj
-%dir %{_libdir}/enlightenment/modules/quickaccess/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/quickaccess/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/quickaccess/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/quickaccess/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/quickaccess/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/shot
@@ -520,20 +523,20 @@ rm -rf $RPM_BUILD_ROOT
 #
 %dir %{_libdir}/enlightenment/modules/start
 %{_libdir}/enlightenment/modules/start/e-module-start.edj
-%dir %{_libdir}/enlightenment/modules/start/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/start/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/start/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/start/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/start/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/syscon
 %{_libdir}/enlightenment/modules/syscon/e-module-syscon.edj
-%dir %{_libdir}/enlightenment/modules/syscon/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/syscon/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/syscon/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/syscon/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/syscon/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/systray
 %{_libdir}/enlightenment/modules/systray/e-module-systray.edj
-%dir %{_libdir}/enlightenment/modules/systray/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/systray/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/systray/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/systray/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/systray/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/tasks
@@ -550,47 +553,47 @@ rm -rf $RPM_BUILD_ROOT
 #
 %dir %{_libdir}/enlightenment/modules/temperature
 %{_libdir}/enlightenment/modules/temperature/e-module-temperature.edj
-%dir %{_libdir}/enlightenment/modules/temperature/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/temperature/linux-gnu-*/module.so
-%attr(755,root,root) %{_libdir}/enlightenment/modules/temperature/linux-gnu-*/tempget
+%dir %{_libdir}/enlightenment/modules/temperature/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/temperature/%{arch_tag}/module.so
+%attr(755,root,root) %{_libdir}/enlightenment/modules/temperature/%{arch_tag}/tempget
 %{_libdir}/enlightenment/modules/temperature/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/tiling
 %{_libdir}/enlightenment/modules/tiling/e-module-tiling.edj
-%dir %{_libdir}/enlightenment/modules/tiling/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/tiling/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/tiling/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/tiling/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/tiling/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/winlist
 %{_libdir}/enlightenment/modules/winlist/e-module-winlist.edj
-%dir %{_libdir}/enlightenment/modules/winlist/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/winlist/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/winlist/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/winlist/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/winlist/module.desktop
 #
 %dir %{_libdir}/enlightenment/modules/wizard
-%dir %{_libdir}/enlightenment/modules/wizard/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/wizard/linux-gnu-*/module.so
-%attr(755,root,root) %{_libdir}/enlightenment/modules/wizard/linux-gnu-*/page_*.so
+%dir %{_libdir}/enlightenment/modules/wizard/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/wizard/%{arch_tag}/module.so
+%attr(755,root,root) %{_libdir}/enlightenment/modules/wizard/%{arch_tag}/page_*.so
 %{_libdir}/enlightenment/modules/wizard/def-ibar.txt
 %{_libdir}/enlightenment/modules/wizard/desktop
 #
 %if %{with wayland}
 %dir %{_libdir}/enlightenment/modules/wl_desktop_shell
-%dir %{_libdir}/enlightenment/modules/wl_desktop_shell/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/wl_desktop_shell/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/wl_desktop_shell/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/wl_desktop_shell/%{arch_tag}/module.so
 %attr(755,root,root) %{_libdir}/enlightenment/modules/wl_desktop_shell/module.desktop
 %attr(755,root,root) %{_libdir}/enlightenment/modules/wl_desktop_shell/*.edj
 %dir %{_libdir}/enlightenment/modules/wl_screenshot
-%dir %{_libdir}/enlightenment/modules/wl_screenshot/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/wl_screenshot/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/wl_screenshot/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/wl_screenshot/%{arch_tag}/module.so
 %attr(755,root,root) %{_libdir}/enlightenment/modules/wl_screenshot/module.desktop
 %attr(755,root,root) %{_libdir}/enlightenment/modules/wl_screenshot/*.edj
 %endif
 #
 %dir %{_libdir}/enlightenment/modules/xkbswitch
 %{_libdir}/enlightenment/modules/xkbswitch/e-module-xkbswitch.edj
-%dir %{_libdir}/enlightenment/modules/xkbswitch/linux-gnu-*
-%attr(755,root,root) %{_libdir}/enlightenment/modules/xkbswitch/linux-gnu-*/module.so
+%dir %{_libdir}/enlightenment/modules/xkbswitch/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/xkbswitch/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/xkbswitch/module.desktop
 #
 %dir %{_libdir}/enlightenment/utils
@@ -609,7 +612,7 @@ rm -rf $RPM_BUILD_ROOT
 %files module-cpufreq-freqset
 %defattr(644,root,root,755)
 # what group should it be ?
-%attr(4754,root,sys) %{_libdir}/enlightenment/modules/cpufreq/linux-gnu-*/freqset
+%attr(4754,root,sys) %{_libdir}/enlightenment/modules/cpufreq/%{arch_tag}/freqset
 
 %files devel
 %defattr(644,root,root,755)
