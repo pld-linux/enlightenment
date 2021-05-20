@@ -16,10 +16,10 @@ Version:	0.18.8
 Release:	1
 License:	BSD
 Group:		X11/Window Managers
-Source0:	http://download.enlightenment.org/rel/apps/enlightenment/%{name}-%{version}.tar.bz2
+Source0:	https://download.enlightenment.org/rel/apps/enlightenment/%{name}-%{version}.tar.bz2
 # Source0-md5:	ff4bed71e3ae5f31c8fe9bb01b13adfa
 Source1:	%{name}-xsession.desktop
-URL:		http://enlightenment.org/
+URL:		https://www.enlightenment.org/
 BuildRequires:	alsa-lib-devel >= 1.0.8
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.11
@@ -54,11 +54,14 @@ BuildRequires:	pkgconfig
 BuildRequires:	xcb-util-keysyms-devel
 BuildRequires:	xkeyboard-config
 %if %{with wayland}
-%{?with_wayland_egl:BuildRequires:	Mesa-libEGL-devel >= 7.10}
 BuildRequires:	pixman-devel >= 0.3
 # wayland-server
 BuildRequires:	wayland-devel >= 1.3.0
 BuildRequires:	xorg-lib-libxkbcommon-devel >= 0.3.0
+%if %{with wayland_egl}
+BuildRequires:	EGL-devel
+BuildRequires:	pkgconfig(egl) >= 7.10
+%endif
 %endif
 Requires:	alsa-lib >= 1.0.8
 Requires:	ecore >= %{efl_ver}
@@ -84,7 +87,6 @@ Requires:	evas-loader-jpeg >= %{efl_ver}
 Requires:	evas-loader-png >= %{efl_ver}
 %{?with_systemd:Requires:	systemd-units >= 1:192}
 %if %{with wayland}
-%{?with_wayland_egl:Requires:	Mesa-libEGL >= 7.10}
 Requires:	pixman >= 0.3
 Requires:	wayland >= 1.3.0
 Requires:	xorg-lib-libxkbcommon >= 0.3.0
