@@ -52,8 +52,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %undefine	__cxx
 
-%define		basearch	%(echo %{_target_platform} | cut -d- -f1)
-%define		arch_tag	linux%{_gnu}-%{basearch}-%{version}
+%define		arch_tag	linux%{_gnu}-*-%{version}
 
 %description
 Enlightenment is a Windowmanager for X Window that is designed to be
