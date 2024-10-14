@@ -11,7 +11,7 @@ Summary(hu.UTF-8):	Enlightenment ablakkezelő
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
 Version:	0.26.0
-Release:	0.1
+Release:	1
 License:	BSD
 Group:		X11/Window Managers
 Source0:	https://download.enlightenment.org/rel/apps/enlightenment/%{name}-%{version}.tar.xz
