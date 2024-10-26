@@ -11,7 +11,7 @@ Summary(hu.UTF-8):	Enlightenment ablakkezelő
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
 Version:	0.26.0
-Release:	1
+Release:	2
 License:	BSD
 Group:		X11/Window Managers
 Source0:	https://download.enlightenment.org/rel/apps/enlightenment/%{name}-%{version}.tar.xz
@@ -44,6 +44,13 @@ Requires:	pixman >= 0.3
 Requires:	wayland >= 1.3.0
 Requires:	xorg-lib-libxkbcommon >= 0.3.0
 %endif
+Suggests:	econnman
+Suggests:	ecrire
+Suggests:	ephoto
+Suggests:	epour
+Suggests:	evisum
+Suggests:	rage
+Suggests:	terminology
 Suggests:	vfmg >= 0.9.95
 Obsoletes:	enlightenment-module-cpufreq-freqset < 0.26.0
 Obsoletes:	enlightenmentDR17
