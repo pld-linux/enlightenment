@@ -95,16 +95,16 @@ Pliki nagłówkowe dla Enlightenmenta.
 %setup -q
 
 %build
-%meson build \
+%meson \
 	%{!?with_systemd:-Dsystemd=false} \
 	%{?with_wayland:-Dwl=true}
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 %find_lang %{name}
 
