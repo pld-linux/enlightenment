@@ -24,8 +24,11 @@ BuildRequires:	doxygen
 BuildRequires:	efl-devel >= %{efl_ver}
 BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	libxcb-devel
+BuildRequires:	meson
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pam-devel
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 2.042
 %{?with_systemd:BuildRequires:	systemd-units >= 1:192}
 BuildRequires:	xcb-util-keysyms-devel
 BuildRequires:	xkeyboard-config
