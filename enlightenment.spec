@@ -4,18 +4,18 @@
 %bcond_without	systemd		# systemd (user session) support
 %bcond_without	wayland		# Wayland clients in composite module
 #
-%define		efl_ver		1.27.0
+%define		efl_ver		1.28.1
 
 Summary:	Enlightenment Window Manager
 Summary(hu.UTF-8):	Enlightenment ablakkezelő
 Summary(pl.UTF-8):	Zarządca okien X - Enlightenment
 Name:		enlightenment
-Version:	0.26.0
-Release:	2
+Version:	0.27.1
+Release:	1
 License:	BSD
 Group:		X11/Window Managers
 Source0:	https://download.enlightenment.org/rel/apps/enlightenment/%{name}-%{version}.tar.xz
-# Source0-md5:	17cbf0f2dfe419019cc90f4392d9980d
+# Source0-md5:	03834b8ac5fa249c0659e37094ae52ca
 URL:		https://www.enlightenment.org/
 BuildRequires:	alsa-lib-devel >= 1.0.8
 BuildRequires:	bluez-libs-devel
@@ -264,6 +264,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/enlightenment/modules/connman/%{arch_tag}/module.so
 %{_libdir}/enlightenment/modules/connman/module.desktop
 #
+%dir %{_libdir}/enlightenment/modules/convertible
+%{_libdir}/enlightenment/modules/convertible/e-module-convertible.edj
+%dir %{_libdir}/enlightenment/modules/convertible/%{arch_tag}
+%attr(755,root,root) %{_libdir}/enlightenment/modules/convertible/%{arch_tag}/module.so
+%{_libdir}/enlightenment/modules/convertible/module.desktop
+#
 %dir %{_libdir}/enlightenment/modules/cpufreq
 %{_libdir}/enlightenment/modules/cpufreq/e-module-cpufreq.edj
 %dir %{_libdir}/enlightenment/modules/cpufreq/%{arch_tag}
@@ -468,7 +474,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/enlightenment/modules/xwayland
 %dir %{_libdir}/enlightenment/modules/xwayland/%{arch_tag}
 %attr(755,root,root) %{_libdir}/enlightenment/modules/xwayland/%{arch_tag}/module.so
-%{_datadir}/wayland-sessions/enlightenment.desktop
+%{_datadir}/wayland-sessions/enlightenment-wayland.desktop
 %endif
 #
 %dir %{_libdir}/enlightenment/modules/xkbswitch
